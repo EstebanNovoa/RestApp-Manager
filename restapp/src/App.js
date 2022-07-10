@@ -1,15 +1,15 @@
 import './App.css';
 import {Routes,Route, BrowserRouter as Router } from "react-router-dom";
+import { Welcome } from './pages/Registry/Welcome';
 
 
-function App() {
+export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/manager' element={<h1>Pureba</h1>}></Route>
+        <Route path='/registry' element={<Welcome/>}></Route>
       </Routes>
     </Router>
   );
 }
 
-export default App;
