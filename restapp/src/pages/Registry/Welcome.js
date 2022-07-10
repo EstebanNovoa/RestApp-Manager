@@ -1,6 +1,6 @@
 import React from "react";
 import { ButtonW } from "../../Components/Common/ButtonW";
-import { LogIn, Signin, SigninMessage } from "../../Components/RegistryElements/Login";
+import { LogIn, SigninMessage } from "../../Components/RegistryElements/Login";
 import { WelcomeHeader } from "../../Components/RegistryElements/WelcomeHeader";
 
 export function Welcome() {
@@ -11,8 +11,12 @@ export function Welcome() {
         <LogIn></LogIn>
         <SigninMessage></SigninMessage>
       </div>
-      <div className="text-center w-1/2 float-left"><ButtonW text="Crear Cuenta" className="mt-10 w-auto h-auto " ></ButtonW></div>
-      <div className=" w-1/3 float-right"><ButtonW text="Crear Cuenta" className="mt-10 w-auto h-auto text-center " ></ButtonW></div>
+      <div className="text-center w-1/2 float-left"><ButtonW text="Iniciar Sesión" className="mt-10" id="btnLogIn" link="" ></ButtonW></div>
+      <div className=" w-1/3 float-right"><ButtonW text="Crear Cuenta" className="mt-10 text-center" id="btnCreateAccount" link="/signin"  ></ButtonW></div>
     </div>
   );
 }
+
+
+
+
