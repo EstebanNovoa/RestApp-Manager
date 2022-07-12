@@ -1,3 +1,4 @@
+import { ButtonW } from "../../Components/Common/ButtonW";
 import { Header } from "../../Components/Common/Header";
 import { ListInput } from "../../Components/Common/ListInput";
 import { TextInput } from "../../Components/Common/TextInput";
@@ -16,7 +17,7 @@ export function SignIn(){
                 <ListInput id="typeDoc" values={values} headerText="Tipo de Documento"></ListInput>
                 <TextInput type="Number" hintText="No Documento" className="outline-none appearance-none" ></TextInput>
             </div>
-            
+            <div className="w-50 mt-10 float-right mr-40"> <ButtonW text="Crear cuenta" id="btnSignIn" link=" " ></ButtonW></div>
         </div>
     );
 }
