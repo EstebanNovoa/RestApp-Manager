@@ -2,7 +2,8 @@ import './App.css';
 import {Routes,Route, BrowserRouter as Router } from "react-router-dom";
 import { Welcome } from './pages/Registry/Welcome';
 import { SignIn } from './pages/Registry/SignIn';
-import { Home } from './pages/Manager/Home';
+import { HomeAdm } from './pages/Manager/HomeAdm';
+import { BookingAdm } from './pages/Manager/BookingAdm';
 
 
 export default function App() {
@@ -19,10 +20,11 @@ export default function App() {
       <Routes>
         <Route path='/registry' element={<Welcome/>}></Route>
         <Route path='/signin' element={<SignIn/>}></Route>        
-        <Route path='/homeAdmin' element={<Home userName ={test.username}
+        <Route path='/homeAdmin' element={<HomeAdm userName ={test.username}
           pendingOrders={test.pendingOrders} finishedOrders={test.finishedOrders} todaysBooking={test.todaysBooking} 
           tomorrowsBooking={test.tomorrowsBooking} bussyTables={test.bussyTables} avaliableTables={test.avaliableTables}>
-        </Home>}></Route>        
+        </HomeAdm>}></Route>   
+        <Route path='/adminBooking' element={<BookingAdm>sddssd</BookingAdm>}></Route>     
       </Routes>
     </Router>
   );

@@ -2,18 +2,11 @@ import { Header } from "../../Components/Common/Header";
 import { InfoAdmin } from "../../Components/Common/InfoAdmin";
 import { NavBarAdmin } from "../../Components/Common/NavBarAdmin";
 
-export function Home(prop) {
+export function HomeAdm(prop) {
   return (
     <div className="w-screen h-screen bg-main-blue">
       <Header></Header>
-      <NavBarAdmin
-        linkHome="/homeAdmin"
-        linkBooking=""
-        linkManageMenu=""
-        linkManageTables=""
-        linkManageOrders=""
-        linkManageAccount=""
-      ></NavBarAdmin>
+      <NavBarAdmin></NavBarAdmin>
       <div className="mt-10 text-center">
         <a className=" text-white text-4xl font-cuprum ">
           Bienvenido: {prop.userName}
