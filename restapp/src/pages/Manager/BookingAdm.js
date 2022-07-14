@@ -11,6 +11,11 @@ export function BookingAdm(){
         new Booking("Reservacion 1","11/04/22","11am",12),
         new Booking("Reservacion 2","11/04/22","11am",12),
         new Booking("Reservacion 3","11/04/22","11am",12),
+        new Booking("Reservacion 4","11/04/22","11am",12),
+        new Booking("Reservacion 5","11/04/22","11am",12),
+        new Booking("Reservacion 6","11/04/22","11am",12),
+        new Booking("Reservacion 7","11/04/22","11am",12),
+        new Booking("Reservacion 8","11/04/22","11am",12),
     ]
     return(
         <div className="w-screen h-screen ">

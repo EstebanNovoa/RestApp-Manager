@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { TextInput } from "../Common/TextInput";
 
 export function LogIn(){
@@ -5,12 +6,17 @@ export function LogIn(){
         <div className="w-1/2 h-full float-left text-center">
             <div className="h-1/6 text-2xl text-white font-bold font-cuprum">Iniciar Sesion</div>
             <div className=" mt-10">
-                <TextInput type='Text' hintText='Email' ></TextInput>
-                <div className="mt-16"><TextInput type='Password' hintText='Password' id="logInPassword" ></TextInput></div>
+                <TextInput type='Text' hintText='Email' id="emailLogIn" name="email"  ></TextInput>
+                <div className="mt-16"><TextInput type='Password' hintText='Password' id="passwordLogIn" name="password" ></TextInput></div>
             </div>
         </div>
     );
 }
+
+
+
+
+
 
 export function SigninMessage(){
     return(
