@@ -54,7 +54,7 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
                     response.setHeader("error", e.getMessage());
                     response.setStatus(HttpServletResponse.SC_FORBIDDEN);
                     Map<String, String> error = new HashMap<>();
-                    error.put("error_message", e.getMessage());
+                    error.put("error_message", "Invalid token");
                     response.setContentType(MediaType.APPLICATION_JSON_VALUE);
                     new ObjectMapper().writeValue(response.getWriter(), error);
                 }

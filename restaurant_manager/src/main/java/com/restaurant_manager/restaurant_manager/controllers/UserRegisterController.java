@@ -33,8 +33,7 @@ public class UserRegisterController {
     }
 
     @PostMapping (consumes = "application/json", produces = "application/json")
-    public ResponseEntity<?> postMethodName(@RequestBody UserRegistryDTO user) {
-        System.out.println(user.getName());
+    public ResponseEntity<?> PostRegister(@RequestBody UserRegistryDTO user) {
         userService.save(user);
         Map<String, String> map = new java.util.HashMap<>();
         map.put("Rest", "Usuario registrado correctamente");

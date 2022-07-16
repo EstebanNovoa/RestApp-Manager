@@ -33,7 +33,7 @@ public class UserLoginController {
     UserRepository userRepository;
 
     @GetMapping (value = "/refresh-token")
-    public void postMethodName(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String authorizationHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             try {
