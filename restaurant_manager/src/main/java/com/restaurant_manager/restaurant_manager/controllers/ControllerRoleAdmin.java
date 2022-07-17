@@ -161,19 +161,14 @@ public class ControllerRoleAdmin {
 
     // orders
 
-    @RequestMapping (path = "/orders/all")
+    @RequestMapping (path = "/orders/all", method = RequestMethod.GET)
     public ResponseEntity<?> getAllOrders(){
         return ResponseEntity.ok(orderRepository.findAll());
     }
 
-    @RequestMapping (path = "/orders/{id}")
+    @RequestMapping (path = "/orders/{id}" , method = RequestMethod.GET)
     public ResponseEntity<?> getOrder(@PathVariable Long id){
         return ResponseEntity.ok(orderRepository.findById(id));
-    }
-
-    @RequestMapping (path = "/orders/{name}")
-    public ResponseEntity<?> getOrder(@PathVariable String name){
-        return ResponseEntity.ok(orderRepository.findByName(name));
     }
 
     @RequestMapping (path = "/orders/add", method = RequestMethod.POST)
