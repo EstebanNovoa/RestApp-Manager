@@ -24,12 +24,13 @@ public class RestaurantTable {
     private boolean isAvailable;
 
     public RestaurantTable() {
+        this.isAvailable = true;
     }
 
-    public RestaurantTable(int id, int capacity, boolean isAvailable) {
+    public RestaurantTable(int id, int capacity) {
         this.id = id;
         this.capacity = capacity;
-        this.isAvailable = isAvailable;
+        this.isAvailable = true;
     }
 
    

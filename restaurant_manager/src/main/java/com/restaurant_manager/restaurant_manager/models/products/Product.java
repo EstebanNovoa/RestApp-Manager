@@ -1,6 +1,5 @@
 package com.restaurant_manager.restaurant_manager.models.products;
 
-import java.sql.Time;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,7 +26,7 @@ public class Product {
     private String description;
 
     @Column(name = "preparationTime", nullable = true, unique = false)
-    private Time preparationTime;
+    private long preparationTime;
 
     @Column(name = "type", nullable = true, unique = false ,length = 50)
     private String type;
@@ -35,7 +34,7 @@ public class Product {
     Product() {
     }
 
-    public Product(int id, String name, double price, String description, Time preparationTime, String type) {
+    public Product(int id, String name, double price, String description, long preparationTime, String type) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -109,14 +108,14 @@ public class Product {
     /**
      * @return Time return the preparationTime
      */
-    public Time getPreparationTime() {
+    public long getPreparationTime() {
         return preparationTime;
     }
 
     /**
      * @param preparationTime the preparationTime to set
      */
-    public void setPreparationTime(Time preparationTime) {
+    public void setPreparationTime(long preparationTime) {
         this.preparationTime = preparationTime;
     }
 
