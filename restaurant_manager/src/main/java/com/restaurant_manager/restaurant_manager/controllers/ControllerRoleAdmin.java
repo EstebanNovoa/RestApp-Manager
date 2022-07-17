@@ -11,10 +11,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.restaurant_manager.restaurant_manager.models.orders.Order;
+import com.restaurant_manager.restaurant_manager.models.orders.orderDTO.OrderDTO;
+import com.restaurant_manager.restaurant_manager.models.orders.repository.OrderRepository;
 import com.restaurant_manager.restaurant_manager.models.products.Product;
 import com.restaurant_manager.restaurant_manager.models.products.repository.ProductRepository;
+import com.restaurant_manager.restaurant_manager.models.reserves.repository.ReserveRepository;
 import com.restaurant_manager.restaurant_manager.models.tables.RestaurantTable;
 import com.restaurant_manager.restaurant_manager.models.tables.repository.TableRepository;
+import com.restaurant_manager.restaurant_manager.models.users.User;
+import com.restaurant_manager.restaurant_manager.models.users.repository.UserRepository;
 
 @Controller
 @RequestMapping("/api/admin")
@@ -25,6 +31,47 @@ public class ControllerRoleAdmin {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private OrderRepository orderRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired ReserveRepository reserveRepository;
+
+    //users
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    public ResponseEntity<?> getUsers() {
+        return ResponseEntity.ok(userRepository.findAll());
+    }
+
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getUser(@PathVariable Long id) {
+        return ResponseEntity.ok(userRepository.findById(id));
+    }
+
+    @RequestMapping(value = "/users", method = RequestMethod.POST)
+    public ResponseEntity<?> createUser(@RequestBody User user) {
+        return ResponseEntity.ok(userRepository.save(user));
+    }
+
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody User user) {
+        User userToUpdate = userRepository.findById(id).get();
+        if(user.getName()!=null||user.getName()!="")userToUpdate.setName(user.getName());
+        if(user.getLastName()!=null||user.getLastName()!="")userToUpdate.setLastName(user.getLastName());
+        if(user.getEmail()!=null|| user.getEmail()!="")userToUpdate.setEmail(user.getEmail());
+        if(user.getPassword()!=null|| user.getPassword()!="")userToUpdate.setPassword(user.getPassword());
+        if(user.getRoles()!=null|| !user.getRoles().isEmpty())userToUpdate.setRoles(user.getRoles());
+        return ResponseEntity.ok(userRepository.save(userToUpdate));
+    }
+
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
+        userRepository.deleteById(id);
+        return ResponseEntity.ok("User deleted");
+    }
 
     // tables
 
@@ -114,5 +161,49 @@ public class ControllerRoleAdmin {
 
     // orders
 
-    
+    @RequestMapping (path = "/orders/all")
+    public ResponseEntity<?> getAllOrders(){
+        return ResponseEntity.ok(orderRepository.findAll());
+    }
+
+    @RequestMapping (path = "/orders/{id}")
+    public ResponseEntity<?> getOrder(@PathVariable Long id){
+        return ResponseEntity.ok(orderRepository.findById(id));
+    }
+
+    @RequestMapping (path = "/orders/{name}")
+    public ResponseEntity<?> getOrder(@PathVariable String name){
+        return ResponseEntity.ok(orderRepository.findByName(name));
+    }
+
+    @RequestMapping (path = "/orders/add", method = RequestMethod.POST)
+    public ResponseEntity<?> addOrder(@RequestBody Order order){
+        orderRepository.save(order);
+        return ResponseEntity.ok(order);
+    }
+
+    @RequestMapping (path = "/orders/update/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateOrder(@RequestBody OrderDTO order, @PathVariable Long id){
+        orderRepository.findById(id).map(o -> {
+            if (order.getState() != null || order.getState() != "")
+                o.setState(order.getState());
+            if (order.getProducts().size() != 0)
+                o.setProducts(order.getProducts());
+            if (order.getReserve() > 0)
+                o.setReserve(reserveRepository.findById(order.getReserve()));
+            if (order.getWorker() > 0)
+                o.setWorker(userRepository.findById(order.getWorker()));
+            if (order.getClient() > 0)
+                o.setClient(userRepository.findById(order.getClient()));
+            return orderRepository.save(o);
+        }).orElseGet(() -> {
+            return orderRepository.save(orderDtoToOrder(order));
+        });
+        return ResponseEntity.ok("Order updated");
+    }
+
+    private Order orderDtoToOrder(OrderDTO order) {
+        Order o = new Order();
+        return null;
+    }
 }
