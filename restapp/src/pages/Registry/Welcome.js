@@ -1,5 +1,5 @@
 import React from "react";
-import { ButtonW } from "../../Components/Common/ButtonW";
+import { ButtonW } from "../../Components/Common/ButtonW.js";
 import { LogIn, SigninMessage } from "../../Components/RegistryElements/Login";
 import { WelcomeHeader } from "../../Components/RegistryElements/WelcomeHeader";
 

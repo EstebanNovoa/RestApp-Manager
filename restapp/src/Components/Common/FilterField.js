@@ -1,3 +1,5 @@
+import React from "react";
+
 export function FilterField(props){
     return(
         <select className=" border border-2 font-cuprum text-lg rounded-lg border-main-blue">{generateOptionList(props.filterOptions)}</select>

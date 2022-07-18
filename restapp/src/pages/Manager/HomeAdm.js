@@ -1,6 +1,7 @@
-import { Header } from "../../Components/Common/Header";
-import { InfoAdmin } from "../../Components/Common/InfoAdmin";
-import { NavBarAdmin } from "../../Components/Common/NavBarAdmin";
+import React from "react";
+import { Header } from "../../Components/Common/Header.js";
+import { InfoAdmin } from "../../Components/Common/InfoAdmin.js";
+import { NavBarAdmin } from "../../Components/Common/NavBarAdmin.js";
 
 export function HomeAdm(prop) {
   return (

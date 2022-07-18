@@ -1,7 +1,7 @@
-import { ButtonW } from "../../Components/Common/ButtonW";
-import { Header } from "../../Components/Common/Header";
-import { ListInput } from "../../Components/Common/ListInput";
-import { TextInput } from "../../Components/Common/TextInput";
+import { ButtonW } from "../../Components/Common/ButtonW.js";
+import { Header } from "../../Components/Common/Header.js";
+import { ListInput } from "../../Components/Common/ListInput.js";
+import { TextInput } from "../../Components/Common/TextInput.js";
 
 export function SignIn(){
     let values = ["CC","CE","NIP"]

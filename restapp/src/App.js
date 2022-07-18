@@ -1,9 +1,13 @@
 import './App.css';
 import {Routes,Route, BrowserRouter as Router } from "react-router-dom";
 import { Welcome } from './pages/Registry/Welcome';
-import { SignIn } from './pages/Registry/SignIn';
-import { HomeAdm } from './pages/Manager/HomeAdm';
-import { BookingAdm } from './pages/Manager/BookingAdm';
+import { SignIn } from './pages/Registry/SignIn.js';
+import { HomeAdm } from './pages/Manager/HomeAdm.js';
+import { BookingAdm } from './pages/Manager/BookingAdm.js';
+import { ManageTables } from './pages/Manager/ManageTables.js';
+import { CreateTable } from './pages/Manager/CreateTable.js';
+import { DeleteTable } from './pages/Manager/DeleteTable.js';
+import React from 'react';
 
 
 export default function App() {
@@ -24,7 +28,10 @@ export default function App() {
           pendingOrders={test.pendingOrders} finishedOrders={test.finishedOrders} todaysBooking={test.todaysBooking} 
           tomorrowsBooking={test.tomorrowsBooking} bussyTables={test.bussyTables} avaliableTables={test.avaliableTables}>
         </HomeAdm>}></Route>   
-        <Route path='/adminBooking' element={<BookingAdm>sddssd</BookingAdm>}></Route>     
+        <Route path='/adminBooking' element={<BookingAdm></BookingAdm>}></Route>     
+        <Route path='/adminManageTables' element={<ManageTables></ManageTables>}></Route>     
+        <Route path='/createTable' element={<CreateTable></CreateTable>}></Route>     
+        <Route path='/deleteTable' element={<DeleteTable></DeleteTable>}></Route>     
       </Routes>
     </Router>
   );

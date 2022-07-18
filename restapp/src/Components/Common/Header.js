@@ -1,3 +1,4 @@
+import React from "react";
 import headerLine from  "../../resources/icons/headerLine.png";
 
 export function Header(){

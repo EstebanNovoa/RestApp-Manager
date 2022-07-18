@@ -1,7 +1,9 @@
-import { FrameInfo } from "../../Components/Common/FramesInfo";
-import { Header } from "../../Components/Common/Header";
-import { InfoAdmin2 } from "../../Components/Common/infoAdmin2";
-import { NavBarAdmin } from "../../Components/Common/NavBarAdmin";
+import React from "react";
+import { ReactElement } from "react";
+import { FrameInfo } from "../../Components/Common/FramesInfo.js";
+import { Header } from "../../Components/Common/Header.js";
+import { InfoAdmin2 } from "../../Components/Common/infoAdmin2.js";
+import { NavBarAdmin } from "../../Components/Common/NavBarAdmin.js";
 import { Booking } from "../../models/Booking";
 
 

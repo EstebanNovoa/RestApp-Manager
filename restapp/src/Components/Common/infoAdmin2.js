@@ -1,3 +1,5 @@
+import React from "react";
+import { ReactElement } from "react";
 
 
 export function InfoAdmin2(props){

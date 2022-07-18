@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TextInput } from "../Common/TextInput";
+import { TextInput } from "../Common/TextInput.js";
 
 export function LogIn(){
     return(

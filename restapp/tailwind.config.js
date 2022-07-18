@@ -9,7 +9,8 @@ module.exports = {
       },
       colors:{
         'main-blue' : "#2A3863",
-        'main-orange': '#F58500'
+        'main-orange': '#F58500',
+        'main-softBlue': '#A7B7E8',
       }
     },
   },

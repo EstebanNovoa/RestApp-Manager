@@ -3,6 +3,7 @@ import { FilterField } from "./FilterField";
 import arrowSliderLeft from "../../resources/icons/sliderArrowLeft.png"
 import arrowSliderRigth from "../../resources/icons/sliderArrowRigth.png"
 import { useState } from "react";
+import React from "react";
 export function FrameInfo(props) {
   const[stateFramesBooking,setStatetFrameBooking] = useState(3);
   return (
