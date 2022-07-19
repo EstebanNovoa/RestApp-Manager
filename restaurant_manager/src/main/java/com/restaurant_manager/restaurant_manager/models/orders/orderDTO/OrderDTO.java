@@ -2,28 +2,37 @@ package com.restaurant_manager.restaurant_manager.models.orders.orderDTO;
 
 import java.util.List;
 
-import com.restaurant_manager.restaurant_manager.models.products.Product;
-
 public class OrderDTO {
     private long id;
     private String state;
-    private List<Product> products;
     private long client;
     private long worker;
     private long reserve;
+    private long table;
+    private List<Long> products;
 
     public OrderDTO() {
     }
 
-    public OrderDTO(long id, String state, List<Product> products, long client, long worker, long reserve) {
+    public OrderDTO(long id, String state, long client, long worker, long reserve) {
         this.id = id;
         this.state = state;
-        this.products = products;
         this.client = client;
         this.worker = worker;
         this.reserve = reserve;
     }
 
+    public OrderDTO(long id, String state, long client, long worker, long reserve, List<Long> products , long table) {
+        this.id = id;
+        this.state = state;
+        this.client = client;
+        this.worker = worker;
+        this.reserve = reserve;
+        this.products = products;
+        this.table = table;
+    }
+
+    
     /**
      * @return long return the id
      */
@@ -50,20 +59,6 @@ public class OrderDTO {
      */
     public void setState(String state) {
         this.state = state;
-    }
-
-    /**
-     * @return List<Product> return the products
-     */
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    /**
-     * @param products the products to set
-     */
-    public void setProducts(List<Product> products) {
-        this.products = products;
     }
 
     /**
@@ -106,6 +101,36 @@ public class OrderDTO {
      */
     public void setReserve(long reserve) {
         this.reserve = reserve;
+    }
+
+
+    /**
+     * @return List<Long> return the products
+     */
+    public List<Long> getProducts() {
+        return products;
+    }
+
+    /**
+     * @param products the products to set
+     */
+    public void setProducts(List<Long> products) {
+        this.products = products;
+    }
+
+
+    /**
+     * @return long return the table
+     */
+    public long getTable() {
+        return table;
+    }
+
+    /**
+     * @param table the table to set
+     */
+    public void setTable(long table) {
+        this.table = table;
     }
 
 }

@@ -18,7 +18,7 @@ import com.restaurant_manager.restaurant_manager.models.users.User;
 public class Reserve {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "reserve_date", nullable = false, unique = false)
     private Date reserveDate;

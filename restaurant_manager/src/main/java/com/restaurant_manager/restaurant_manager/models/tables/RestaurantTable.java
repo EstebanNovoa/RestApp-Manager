@@ -10,12 +10,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tables")
 public class RestaurantTable {
-    @Id 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    @Column(name = "table_number", nullable = false, unique = false)
-    private int tableNumber;
+    private long id;
 
     @Column(name = "capacity", nullable = false, unique = false, length = 2)
     private int capacity;
@@ -33,35 +30,18 @@ public class RestaurantTable {
         this.isAvailable = true;
     }
 
-   
-
-
     /**
-     * @return int return the id
+     * @return long return the id
      */
-    public int getId() {
+    public long getId() {
         return id;
     }
 
     /**
-     * @param id the id to set
+     * @param l the id to set
      */
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    /**
-     * @return int return the tableNumber
-     */
-    public int getTableNumber() {
-        return tableNumber;
-    }
-
-    /**
-     * @param tableNumber the tableNumber to set
-     */
-    public void setTableNumber(int tableNumber) {
-        this.tableNumber = tableNumber;
+    public void setId(long l) {
+        this.id = l;
     }
 
     /**

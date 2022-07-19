@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.restaurant_manager.restaurant_manager.models.tables.RestaurantTable;
 
-public interface TableRepository extends JpaRepository<RestaurantTable, Integer> {
-    public RestaurantTable findByTableNumber(int number);
+public interface TableRepository extends JpaRepository<RestaurantTable, Long> {
+    RestaurantTable findById(long id);
 }
