@@ -29,7 +29,7 @@ export function ManageTables(){
     <div className="w-screen h-screen">
       <Header />
       <NavBarAdmin />
-       { loading == true ? <div className="h-screen w-screen">Cargando...</div> :
+       { loading == true ? <div className="h-screen w-screen text-4xl text-white font-cuprum">Cargando...</div> :
       <SubHeaderAdmin
         headerFrame="Administrar mesas"
         child={
@@ -39,7 +39,7 @@ export function ManageTables(){
                 <ButtonB
                   text="Crear mesa"
                   id="btnCreateTable"
-                  link=""
+                  link="../createTable"
                   event=""
                   className=""
                 ></ButtonB>

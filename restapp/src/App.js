@@ -22,18 +22,25 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/registry' element={<Welcome/>}></Route>
-        <Route path='/signin' element={<SignIn/>}></Route>        
-        <Route path='/homeAdmin' element={<HomeAdm userName ={test.username}
-          pendingOrders={test.pendingOrders} finishedOrders={test.finishedOrders} todaysBooking={test.todaysBooking} 
-          tomorrowsBooking={test.tomorrowsBooking} bussyTables={test.bussyTables} avaliableTables={test.avaliableTables}>
-        </HomeAdm>}></Route>   
-        <Route path='/adminBooking' element={<BookingAdm></BookingAdm>}></Route>     
-        <Route path='/adminManageTables' element={<ManageTables></ManageTables>}></Route>     
-        <Route path='/createTable' element={<CreateTable></CreateTable>}></Route>     
-        <Route path='/deleteTable' element={<DeleteTable></DeleteTable>}></Route>     
+          <Route path="registry" >
+              <Route path='index' element={<Welcome/>}></Route>
+              <Route path='signin' element={<SignIn/>}></Route> 
+          </Route>
+          <Route path="manager" >
+              <Route path='home' element={<HomeAdm userName ={test.username}
+              pendingOrders={test.pendingOrders} finishedOrders={test.finishedOrders} todaysBooking={test.todaysBooking} 
+              tomorrowsBooking={test.tomorrowsBooking} bussyTables={test.bussyTables} avaliableTables={test.avaliableTables}>
+              </HomeAdm>}></Route>
+              <Route path='booking' element={<BookingAdm></BookingAdm>}></Route>     
+              <Route path='manageTables' element={<ManageTables></ManageTables>}>              </Route>
+              <Route path='createTable' element={<CreateTable></CreateTable>}></Route>     
+              <Route path='deleteTable' element={<DeleteTable></DeleteTable>}></Route>  </Route>
       </Routes>
-    </Router>
+  </Router>
   );
+
+
+  
+
 }
 

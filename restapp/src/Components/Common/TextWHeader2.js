@@ -23,6 +23,6 @@ export function TextWHeaderInput(prop){
     return(
         <div>
             <a className="text-3xl font-cuprum text-main-blue">{prop.header}</a><br/><br/>
-            <div className="w-full  border-solid border-b-2 border-black text-center"><a className="mt-10  font-cuprum text-2xl  text-main-blue text-center" id={prop.id}  >{prop.text + " "} <input type={prop.type} className=" outline-none text-center hover:non" min="1" max="9" step="1" ></input></a></div></div>
+            <div className="w-full  border-solid border-b-2 border-black text-center"><a className="mt-10  font-cuprum text-2xl  text-main-blue text-center" id={prop.id}  >{prop.text + " "} <input type={prop.type} className=" outline-none text-center hover:non" min="1" max="9" step="1"  ></input></a></div></div>
     );
 }
