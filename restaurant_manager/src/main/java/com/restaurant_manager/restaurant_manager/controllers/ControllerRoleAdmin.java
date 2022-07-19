@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -86,22 +87,26 @@ public class ControllerRoleAdmin {
 
     // tables
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/tables")
     public ResponseEntity<?> getTables() {
         return ResponseEntity.ok(tableRepository.findAll());
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(path = "/tables/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getTable(@PathVariable Long id) {
         return ResponseEntity.ok(tableRepository.findById(id));
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(path = "/tables/add", method = RequestMethod.POST)
     public ResponseEntity<?> addTable(@RequestBody RestaurantTable table) {
         tableRepository.save(table);
         return ResponseEntity.ok(table);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(path = "/tables/update/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> updateTable(@RequestBody RestaurantTable table, @PathVariable Long id) {
         tableRepository.findById(id).map(t -> {
@@ -118,6 +123,7 @@ public class ControllerRoleAdmin {
         return ResponseEntity.ok("Table updated");
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/tables/delete/{id}")
     public ResponseEntity<?> deleteTable(@PathVariable Long id) {
         tableRepository.delete(
