@@ -133,22 +133,26 @@ public class ControllerRoleAdmin {
 
     // products
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(path = "/products", method = RequestMethod.GET)
     public ResponseEntity<?> getProducts() {
         return ResponseEntity.ok(productRepository.findAll());
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(path = "/products/get/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getProduct(@PathVariable Long id) {
         return ResponseEntity.ok(productRepository.findById(id));
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(path = "/products/add", method = RequestMethod.POST)
     public ResponseEntity<?> addProduct(@RequestBody Product product) {
         productRepository.save(product);
         return ResponseEntity.ok(product);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/products/update/{id}")
     public ResponseEntity<?> updateProduct(@RequestBody Product product, @PathVariable Long id) {
         productRepository.findById(id).map(p -> {
@@ -169,6 +173,7 @@ public class ControllerRoleAdmin {
         return ResponseEntity.ok("Product updated");
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping(path = "/products/delete/{id}")
     public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
         productRepository.delete(productRepository.findById(id)
@@ -178,16 +183,19 @@ public class ControllerRoleAdmin {
 
     // orders
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(path = "/orders/all", method = RequestMethod.GET)
     public ResponseEntity<?> getAllOrders() {
         return ResponseEntity.ok(orderRepository.findAll());
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(path = "/orders/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getOrder(@PathVariable Long id) {
         return ResponseEntity.ok(orderRepository.findById(id));
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(path = "/orders/add", method = RequestMethod.POST)
     public ResponseEntity<?> addOrder(@RequestBody OrderDTO orderDto) {
         Order order = orderDtoToOrder(orderDto);
@@ -195,6 +203,7 @@ public class ControllerRoleAdmin {
         return ResponseEntity.ok(order);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(path = "/orders/update/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> updateOrder(@RequestBody OrderDTO orderDto, @PathVariable Long id) {
         Order order = orderDtoToOrder(orderDto);
@@ -236,6 +245,7 @@ public class ControllerRoleAdmin {
         return o;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping(path = "/orders/delete/{id}")
     public ResponseEntity<?> deleteOrder(@PathVariable Long id) {
         orderRepository.delete(orderRepository.findById(id)
@@ -245,16 +255,19 @@ public class ControllerRoleAdmin {
 
     // reserves
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(path = "/reserves/all", method = RequestMethod.GET)
     public ResponseEntity<?> getAllReserves() {
         return ResponseEntity.ok(reserveRepository.findAll());
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(path = "/reserves/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getReserve(@PathVariable Long id) {
         return ResponseEntity.ok(reserveRepository.findById(id));
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(path = "/reserves/add", method = RequestMethod.POST)
     public ResponseEntity<?> addReserve(@RequestBody Reserve reserve) {
         reserveRepository.save(reserve);
@@ -263,6 +276,7 @@ public class ControllerRoleAdmin {
 
     // @PutMapping("/reserves/update/{id}")
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping(path = "/reserves/delete/{id}")
     public ResponseEntity<?> deleteReserve(@PathVariable Long id) {
         reserveRepository.delete(reserveRepository.findById(id)
