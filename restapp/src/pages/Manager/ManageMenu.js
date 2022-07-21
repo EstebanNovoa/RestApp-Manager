@@ -4,27 +4,25 @@ import { FrameListSlider } from "../../Components/Common/FrameListSlider.js";
 import { Header } from "../../Components/Common/Header.js";
 import { NavBarAdmin } from "../../Components/Common/NavBarAdmin.js";
 import { SubHeaderAdmin } from "../../Components/Common/SubHeaderAdmin.js";
-import { Table } from "../../models/Table.js";
 
-export function ManageTables(){
+export function ManageMenu(){
 
-    let headers = ["Mesa", "Capacidad"];
+    let headers = ["Nombre", "Categoria","Precio"];
     const [loading,setLoading] = useState(false);
-    let tablesw = [
-      { tableNumber: "Mesa 1", capacity: "5" },
-      { tableNumber: "Mesa 2", capacity: "2" },
-      { tableNumber: "Mesa 3", capacity: "4" },
-      { tableNumber: "Mesa 4", capacity: "2" },
-      { tableNumber: "Mesa 5", capacity: "2" },
-      { tableNumber: "Mesa 6", capacity: "2" },
-      { tableNumber: "Mesa 7", capacity: "2" },
+    let menuItems = [
+      { name: "Pola", type: "Bebida", price : 3000 },
+      { name: "Currasco 1/2", type: "Preparacion", price : 27000},
+      { name: "Lasagna", type: "Preparacion", price : 20000 },
+      { name: "Picada 4", type: "Preparacion", price : 57000 },
+      { name: "Gaseosa 300 ml", type: "Bebida", price :  2500},
+
     ];
-    const [tables,setTables] = useState(tablesw);
+    const [menu,setMenu] = useState(menuItems);
   
     useEffect(() => {
       const getProducts = async () => {
         setLoading(true);
-        setTables(await getDataTables());
+        setMenu(await getDataMenuItems());
         setLoading(false);
       }
       getProducts();
@@ -37,15 +35,15 @@ export function ManageTables(){
       <NavBarAdmin />
        { loading == true ? <div className="h-screen w-screen text-4xl text-white font-cuprum">Cargando...</div> :
       <SubHeaderAdmin
-        headerFrame="Administrar mesas"
+        headerFrame="Administrar menú"
         child={
           <div className="w-full h-full ">
             <div className="float-left w-1/3 h-1/2 grid grid-rows-2 mt-16 pl-20">
               <div className="flex flex-col justify-center items-center">
                 <ButtonB
-                  text="Crear mesa"
-                  id="btnCreateTable"
-                  link="../createTable"
+                  text="Crear item"
+                  id="btnCreateItem"
+                  link="../createMenuItem"
                   event=""
                   className=""
                 ></ButtonB>
@@ -53,9 +51,9 @@ export function ManageTables(){
               </div>
               <div className="flex flex-col justify-center items-center">
                 <ButtonB
-                  text="Eliminar mesa"
-                  id="btnCreateTable"
-                  link="../deleteTable"
+                  text="Eliminar item"
+                  id="btnDeleteItem"
+                  link="../createMenuItem"
                   event=""
                   className=""
                 ></ButtonB>
@@ -65,7 +63,7 @@ export function ManageTables(){
             <div className="float-right w-3/5 h-2/3 pr-10 ">
               <FrameListSlider
                 headers={headers}
-                subHeaders={tables}
+                subHeaders={menu}
               ></FrameListSlider>
             </div>
           </div>
@@ -77,8 +75,8 @@ export function ManageTables(){
 }
 
 
-export async function getDataTables() {
-    const response = await fetch('http://localhost:8080/api/admin/tables');
+export async function getDataMenuItems() {
+    const response = await fetch('http://localhost:8080/api/admin/products');
     return await response.json();
 }
 

@@ -8,6 +8,8 @@ import { ManageTables } from './pages/Manager/ManageTables.js';
 import { CreateTable } from './pages/Manager/CreateTable.js';
 import { DeleteTable } from './pages/Manager/DeleteTable.js';
 import React from 'react';
+import { ManageMenu } from './pages/Manager/ManageMenu';
+import { CreateItemMenu } from './pages/Manager/CreateMenuItem';
 
 
 export default function App() {
@@ -32,9 +34,14 @@ export default function App() {
               tomorrowsBooking={test.tomorrowsBooking} bussyTables={test.bussyTables} avaliableTables={test.avaliableTables}>
               </HomeAdm>}></Route>
               <Route path='booking' element={<BookingAdm></BookingAdm>}></Route>     
-              <Route path='manageTables' element={<ManageTables></ManageTables>}>              </Route>
+              <Route path='manageTables' element={<ManageTables></ManageTables>}></Route>
               <Route path='createTable' element={<CreateTable></CreateTable>}></Route>     
-              <Route path='deleteTable' element={<DeleteTable></DeleteTable>}></Route>  </Route>
+              <Route path='deleteTable' element={<DeleteTable></DeleteTable>}></Route>  
+              <Route path='manageMenu' element={<ManageMenu></ManageMenu>}></Route>
+              <Route path='createMenuItem' element={<CreateItemMenu></CreateItemMenu>}></Route>
+          </Route>
+          <Route path="client" ></Route>
+
       </Routes>
   </Router>
   );

@@ -3,15 +3,13 @@ import { ButtonB } from "../../Components/Common/ButtonB.js";
 import { Header } from "../../Components/Common/Header.js";
 import { NavBarAdmin } from "../../Components/Common/NavBarAdmin.js";
 import { SubHeaderAdmin } from "../../Components/Common/SubHeaderAdmin.js";
-import { TextInput } from "../../Components/Common/TextInput.js";
-import { TextInputWHeader } from "../../Components/Common/TextInputWHeader.js";
-import { TextWHeader, TextWHeaderInput } from "../../Components/Common/TextWHeader2.js";
+import { TextWHeader,NumberWithHeaderInput } from "../../Components/Common/TextWHeader2.js";
 import { Table } from "../../models/Table.js";
 
 
 export function CreateTable(){
     const [numberTables,setNumberTables] = useState(0);
-    const [loading,setLoading] = useState([]);
+    const [loading,setLoading] = useState(true);
     useEffect(() => {
         const getProducts = async () => {
           setLoading(true);
@@ -33,11 +31,11 @@ export function CreateTable(){
                             <TextWHeader  text={'Mesa ' + (numberTables.length + 1)} id='nameTable' name='nameTable'  header="Numero mesa" ></TextWHeader>
                         </div>
                         <div className="float-right w-1/3 pl-12 mt-16 mr-20">
-                            <TextWHeaderInput type='number' text='' id='inpCapacity' name='inpCapacity'  header="Capacidad" ></TextWHeaderInput>
+                            <NumberWithHeaderInput type='number' text='' id='inpCapacityNewTable'  name='inpCapacity'  header="Capacidad" ></NumberWithHeaderInput>
                         </div>
                     </div>
                     <div className="text-center h-full pt-20    ">
-                        <ButtonB text='Añadir' id='btnAddTable' link="" evento={onClickAddTable()}></ButtonB>
+                        <ButtonB text='Añadir' id='btnAddTable' link="../manageTables"  event={onClickAddTable}></ButtonB>
                     </div>
                 </div>
             }>
@@ -47,21 +45,18 @@ export function CreateTable(){
 }
 
 export function onClickAddTable(){
-    let capacityInput = document.getElementById('inpCapacity')
     let data = {
-            tableNumber:5,
-            capacity:5,
-            isAvailable: true
+            capacity:document.getElementById('inpCapacityNewTable').value,
     };
     fetch('http://localhost:8080/api/admin/tables/add', {
     method: 'POST', // or 'PUT'
     body: JSON.stringify(data), // data can be `string` or {object}!
     headers:{
-       'Access-Control-Allow-Headers' : '*'
+        'Content-Type': 'application/json'
     }
     }).then(res => res.json())
-    .catch(error => console.error('Error:', error))
-    .then(response => console.log('Success:', response));
+    .catch(error => alert("No pudimos registrar tu mesa"))
+   .then(response => alert('Mesa registrada!'));
 }
 
 export async function  getTotalTables(){

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ReactElement } from "react";
 import { FrameInfo } from "../../Components/Common/FramesInfo.js";
 import { Header } from "../../Components/Common/Header.js";
@@ -19,13 +19,24 @@ export function BookingAdm(){
         new Booking("Reservacion 7","11/04/22","11am",12),
         new Booking("Reservacion 8","11/04/22","11am",12),
     ]
+    const[loading,setLoading] = useState(true);
+    const[bookings,setBookings] = useState([]);
+    useEffect(() => {
+        const getProducts = async () => {
+          setLoading(true);
+          setBookings( children/*await getBookings()*/);
+          setLoading(false);
+        }
+        getProducts();
+      }, []);
     return(
         <div className="w-screen h-screen ">
             <Header></Header>
             <NavBarAdmin></NavBarAdmin>
-            <FrameInfo header="Reservaciones" filterOptions={filterOptions} child={generateBookingFields(children)}><div></div></FrameInfo>
-            <div className="bg-main-blue h-20" ></div>
-        </div>
+            { loading == true ? <div className="h-screen w-screen text-4xl text-white font-cuprum">Cargando...</div> :
+            <FrameInfo header="Reservaciones" filterOptions={filterOptions} child={generateBookingFields(bookings)}><div></div></FrameInfo>
+            }<div className="bg-main-blue h-20" ></div>
+    </div>
     );
 }
 
@@ -33,4 +44,9 @@ export function generateBookingFields(bookingList){
     return bookingList.map((value) => {
         return <InfoAdmin2 header={value.name} info1= {"Comensales:" + value.noCustomer} info2={"Hora:" + value.hour} info3={"Fecha:" + value.date}> {value}</InfoAdmin2>;
       });
+}
+
+export async function  getBookings(){
+    const response = await fetch('http://localhost:8080/api/admin/tables');
+    return await response.json();
 }

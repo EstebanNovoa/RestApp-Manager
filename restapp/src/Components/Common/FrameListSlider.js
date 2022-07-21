@@ -42,21 +42,21 @@ export function generateHeaders(headers) {
 
 
 export function generateSubHeaders(headers,subHeaders) {
-   console.log('vvvv'+subHeaders)
     return subHeaders.map((value) => {
         switch (headers.length) {
           case 2:
             return (
             <div className=" border-main-softBlue mx-auto pb-3 w-11/12 text-center pt-5 border-b-2 ">
-                <a className="text-main-blue font-cuprum text-xl mr-24 ml-20 text-center"> {value.tableNumber} </a>
+                <a className="text-main-blue font-cuprum text-xl mr-24 ml-20 text-center"> {value.id} </a>
                 <a className="text-main-blue font-cuprum text-xl mr-24 ml-20 text-center"> {value.capacity} </a>
             </div>
             );
           case 3:
             return (
-                <div className=" border-main-softBlue mx-auto pb-3 w-11/12 text-center pt-5 border-b-2">
-                <a className="text-main-blue font-cuprum text-xl mr-10 ml-10 text-center"> {value.name} </a>
-                <a className="text-main-blue font-cuprum text-xl mr-10 ml-10 text-center"> {value.capacity} </a>
+                <div className=" border-main-softBlue mx-auto pb-3 w-11/12 text-center pt-5 border-b-2 grid grid-cols-3 pl-4">
+                <a className="text-main-blue font-cuprum text-xl text-center "> {value.name} </a>
+                <a className="text-main-blue font-cuprum text-xl text-center pl-6"> {value.type} </a>
+                <a className="text-main-blue font-cuprum text-xl text-center pl-10"> {"$"+value.price} </a>
             </div>
             );
           default:
