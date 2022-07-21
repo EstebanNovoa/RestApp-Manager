@@ -44,7 +44,7 @@ public class Order {
     @JoinColumn(name = "reserve_id", referencedColumnName = "id")
     private Reserve reserve;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "table_id", referencedColumnName = "id")
     private RestaurantTable table;
 

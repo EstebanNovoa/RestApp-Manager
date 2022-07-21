@@ -1,7 +1,9 @@
 package com.restaurant_manager.restaurant_manager.controllers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +28,6 @@ import com.restaurant_manager.restaurant_manager.models.tables.RestaurantTable;
 import com.restaurant_manager.restaurant_manager.models.tables.repository.TableRepository;
 import com.restaurant_manager.restaurant_manager.models.users.User;
 import com.restaurant_manager.restaurant_manager.models.users.repository.UserRepository;
-
 
 @Controller
 @RequestMapping("/api/admin")
@@ -131,6 +132,15 @@ public class ControllerRoleAdmin {
         return ResponseEntity.ok("Table deleted");
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @RequestMapping(path = "/tables/count", method = RequestMethod.GET)
+    public ResponseEntity<?> getTableCount() {
+        Map<String, Long> map = new HashMap<>();
+        map.put("Ocupadas", tableRepository.countByIsAvailable(false));
+        map.put("Disponibles", tableRepository.countByIsAvailable(true));
+        return ResponseEntity.ok(map);
+    }
+
     // products
 
     @CrossOrigin(origins = "http://localhost:3000")
@@ -226,18 +236,23 @@ public class ControllerRoleAdmin {
     private Order orderDtoToOrder(OrderDTO order) {
         Order o = new Order();
         o.setState(order.getState());
-        if(order.getReserve()!=0)o.setReserve(reserveRepository.findById(order.getReserve()));
-        if(order.getWorker()!=0)o.setWorker(userRepository.findById(order.getWorker()));
+        if (order.getReserve() != 0)
+            o.setReserve(reserveRepository.findById(order.getReserve()));
+        if (order.getWorker() != 0)
+            o.setWorker(userRepository.findById(order.getWorker()));
         o.setClient(userRepository.findById(order.getClient()));
         RestaurantTable table = tableRepository.findById(order.getTable());
-        if(table.isAvailable()){
-            o.setTable(table);
-            table.setIsAvailable(false);
-            tableRepository.save(table);
+        if (table != null) {
+            if (table.isAvailable()) {
+                o.setTable(table);
+                table.setIsAvailable(false);
+                tableRepository.save(table);
+            }
         }
         List<Product> products = new ArrayList<>();
         order.getProducts().forEach(p -> {
-            Product product = productRepository.findById(p).orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + p));
+            Product product = productRepository.findById(p)
+                    .orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + p));
             products.add(product);
             o.setTotalPrice(o.getTotalPrice() + product.getPrice());
         });
@@ -251,6 +266,16 @@ public class ControllerRoleAdmin {
         orderRepository.delete(orderRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid order Id:" + id)));
         return ResponseEntity.ok("Order deleted");
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @RequestMapping(path = "/orders/count", method = RequestMethod.GET)
+    public ResponseEntity<?> getOrdersCount() {
+        Map<String, Long> map = new HashMap<>();
+        long active = orderRepository.countByState("Activa");
+        map.put("Activas", active);
+        map.put("Despachadas", orderRepository.count() - active);
+        return ResponseEntity.ok(map);
     }
 
     // reserves

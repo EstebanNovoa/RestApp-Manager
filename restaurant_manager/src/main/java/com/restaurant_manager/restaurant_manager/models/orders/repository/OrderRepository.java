@@ -6,5 +6,5 @@ import com.restaurant_manager.restaurant_manager.models.orders.Order;
 
 public interface OrderRepository extends JpaRepository<Order,Long> {
 
-
+    long countByState(String state);
 }
