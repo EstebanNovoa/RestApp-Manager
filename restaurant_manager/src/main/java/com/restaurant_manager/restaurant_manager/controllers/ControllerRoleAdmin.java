@@ -31,6 +31,7 @@ import com.restaurant_manager.restaurant_manager.models.users.repository.UserRep
 
 @Controller
 @RequestMapping("/api/admin")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ControllerRoleAdmin {
 
     @Autowired
