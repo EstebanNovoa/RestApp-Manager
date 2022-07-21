@@ -1,65 +1,25 @@
-package com.restaurant_manager.restaurant_manager.models.reserves;
+package com.restaurant_manager.restaurant_manager.models.reserves.dto;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+public class ReserveDto {
 
-import com.restaurant_manager.restaurant_manager.models.users.User;
-
-@Entity
-@Table(name = "reserves")
-public class Reserve {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "reserve_date", nullable = false, unique = false)
     private LocalDateTime reserveDate;
-
-    @Column(name = "dispatched", nullable = false, unique = false)
     private boolean isDispatched;
-
-    @Column(name = "dispatched_date", nullable = true, unique = false)
     private LocalDateTime dispatchedDate;
-
-    @Column(name = "amount_of_people", nullable = false, unique = false)
     private int amountOfPeople;
+    private long client;
 
-    @ManyToOne
-    @JoinColumn(name = "client_id", referencedColumnName = "id")
-    private User client;
-
-    public Reserve() {
+    public ReserveDto() {
     }
 
-    public Reserve(LocalDateTime reserveDate, boolean isDispatched, LocalDateTime dispatchedDate, int amountOfPeople,
-            User client) {
+    public ReserveDto(LocalDateTime reserveDate, boolean isDispatched, LocalDateTime dispatchedDate, int amountOfPeople,
+            long client) {
         this.reserveDate = reserveDate;
         this.isDispatched = isDispatched;
         this.dispatchedDate = dispatchedDate;
         this.amountOfPeople = amountOfPeople;
         this.client = client;
-    }
-
-    /**
-     * @return Long return the id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Long id) {
-        this.id = id;
     }
 
     /**
@@ -119,16 +79,16 @@ public class Reserve {
     }
 
     /**
-     * @return User return the client
+     * @return long return the client
      */
-    public User getClient() {
+    public long getClient() {
         return client;
     }
 
     /**
      * @param client the client to set
      */
-    public void setClient(User client) {
+    public void setClient(long client) {
         this.client = client;
     }
 

@@ -23,6 +23,7 @@ import com.restaurant_manager.restaurant_manager.models.orders.repository.OrderR
 import com.restaurant_manager.restaurant_manager.models.products.Product;
 import com.restaurant_manager.restaurant_manager.models.products.repository.ProductRepository;
 import com.restaurant_manager.restaurant_manager.models.reserves.Reserve;
+import com.restaurant_manager.restaurant_manager.models.reserves.dto.ReserveDto;
 import com.restaurant_manager.restaurant_manager.models.reserves.repository.ReserveRepository;
 import com.restaurant_manager.restaurant_manager.models.tables.RestaurantTable;
 import com.restaurant_manager.restaurant_manager.models.tables.repository.TableRepository;
@@ -185,10 +186,9 @@ public class ControllerRoleAdmin {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @DeleteMapping(path = "/products/delete/{id}")
-    public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
-        productRepository.delete(productRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + id)));
+    @DeleteMapping(path = "/products/delete/{name}")
+    public ResponseEntity<?> deleteProduct(@PathVariable String nameString) {
+        productRepository.delete(productRepository.findByName(nameString));
         return ResponseEntity.ok("Product deleted");
     }
 
@@ -295,12 +295,21 @@ public class ControllerRoleAdmin {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(path = "/reserves/add", method = RequestMethod.POST)
-    public ResponseEntity<?> addReserve(@RequestBody Reserve reserve) {
+    public ResponseEntity<?> addReserve(@RequestBody ReserveDto reserveDto) {
+        Reserve reserve = reserveDtoToReserve(reserveDto);
         reserveRepository.save(reserve);
         return ResponseEntity.ok(reserve);
     }
 
-    // @PutMapping("/reserves/update/{id}")
+    private Reserve reserveDtoToReserve(ReserveDto reserveDto) {
+        Reserve reserve = new Reserve();
+        reserve.setReserveDate(reserveDto.getReserveDate());
+        reserve.setIsDispatched(reserveDto.isIsDispatched());
+        reserve.setDispatchedDate(reserveDto.getDispatchedDate());
+        reserve.setAmountOfPeople(reserveDto.getAmountOfPeople());
+        reserve.setClient(userRepository.findById(reserveDto.getClient()));
+        return reserve;
+    }
 
     @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping(path = "/reserves/delete/{id}")
