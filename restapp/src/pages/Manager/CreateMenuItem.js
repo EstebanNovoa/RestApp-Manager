@@ -20,7 +20,7 @@ export function CreateItemMenu(){
                     <TextWHeaderInputPrice header='Precio' type='number' text='$' id='inpPriceItem' ></TextWHeaderInputPrice>
                 </div>
                 <div className="text-center h-full  w-full">
-                    <ButtonB text='Añadir' id='btnAddItemMenu' link="" event={onClickAddProduct}></ButtonB>
+                    <ButtonB text='Añadir' id='btnAddItemMenu' link="../manageMenu" event={onClickAddProduct}></ButtonB>
                 </div>
                 </div>
             }></SubHeaderAdmin>
@@ -36,7 +36,6 @@ function onClickAddProduct(){
             type:categoryList.options[categoryList.selectedIndex].text,
             price:document.getElementById('inpPriceItem').value,
     };
-    console.log(data);
      fetch(' http://localhost:8080/api/admin/products/add', {
      method: 'POST', // or 'PUT'
      body: JSON.stringify(data), // data can be `string` or {object}!

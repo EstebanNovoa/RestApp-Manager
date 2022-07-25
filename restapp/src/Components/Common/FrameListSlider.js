@@ -1,5 +1,6 @@
 import React from "react";
-import { ReactElement } from "react";
+import { Link } from "react-router-dom";
+import binIcon from "../../resources/icons/bin.png"
 
 export function FrameListSlider(props) {
   return (
@@ -27,7 +28,7 @@ export function generateHeaders(headers) {
         return (
           <a className="text-main-blue font-cuprum text-3xl mr-14 ml-14 text-center"> {value} </a>
         );
-      case 3:
+      case 4:
         return (
           <a className="text-main-blue font-cuprum text-3xl mr-10 ml-10">
             {value}
@@ -41,7 +42,7 @@ export function generateHeaders(headers) {
 }
 
 
-export function generateSubHeaders(headers,subHeaders) {
+export function generateSubHeaders(headers,subHeaders) {  
     return subHeaders.map((value) => {
         switch (headers.length) {
           case 2:
@@ -51,17 +52,20 @@ export function generateSubHeaders(headers,subHeaders) {
                 <a className="text-main-blue font-cuprum text-xl mr-24 ml-20 text-center"> {value.capacity} </a>
             </div>
             );
-          case 3:
+          case 4:
             return (
-                <div className=" border-main-softBlue mx-auto pb-3 w-11/12 text-center pt-5 border-b-2 grid grid-cols-3 pl-4">
-                <a className="text-main-blue font-cuprum text-xl text-center "> {value.name} </a>
-                <a className="text-main-blue font-cuprum text-xl text-center pl-6"> {value.type} </a>
-                <a className="text-main-blue font-cuprum text-xl text-center pl-10"> {"$"+value.price} </a>
-            </div>
+                <div className=" border-main-softBlue mx-auto pb-3 w-11/12 text-center pt-5 border-b-2 grid grid-cols-4 pl-4">
+                  <a className="text-main-blue font-cuprum text-xl text-center "> {value.name} </a>
+                  <a className="text-main-blue font-cuprum text-xl text-center pl-6"> {value.type} </a>
+                  <a className="text-main-blue font-cuprum text-xl text-center pl-10"> {"$"+value.price} </a>
+                  <Link to = {`../deleteMenuItem/${value.id}`}><button src="/deleteMenuItem"><img className="w-12 h-8 pl-4 mx-auto" src={binIcon} ></img></button></Link>
+                </div>           
             );
           default:
             break;
         }
-    
       });
 }
+
+
+

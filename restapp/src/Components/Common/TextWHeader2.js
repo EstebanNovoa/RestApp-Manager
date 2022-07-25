@@ -50,6 +50,6 @@ export function TextWHeaderInputPrice(prop){
     return(
         <div>
             <a className="text-3xl font-cuprum text-main-blue">{prop.header}</a><br/><br/>
-            <div className="w-full  border-solid border-b-2 border-black text-center"><a className="mt-10  font-cuprum text-2xl  text-main-blue text-center" id={prop.id}  >{prop.text + " "} <input type={prop.type} className=" outline-none text-center hover:non" min="1000" step="500"  defaultValue='1000'></input></a></div></div>
+            <div className="w-full  border-solid border-b-2 border-black text-center"><a className="mt-10  font-cuprum text-2xl  text-main-blue text-center"   >{prop.text + " "} <input type={prop.type} className=" outline-none text-center hover:non" min="1000" step="500"  defaultValue='1000' id={prop.id}></input></a></div></div>
     );
 }

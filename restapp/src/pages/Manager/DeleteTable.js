@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { ButtonB } from "../../Components/Common/ButtonB.js";
 import { Header } from "../../Components/Common/Header.js";
 import { NavBarAdmin } from "../../Components/Common/NavBarAdmin.js";
@@ -28,7 +29,7 @@ export function DeleteTable(){
                 <div className="w-full h-full ">
                     <div className="h-1/3">
                         <div className="w-1/2 pl-12 mt-20 mx-auto">
-                            <TextWHeaderInput2  type='number' text='Mesa' id='nameTable' name='nameTable'  header="Numero mesa" max={numberTables.length}></TextWHeaderInput2>
+                            <TextWHeaderInput2  type='number' text='Mesa' id='inpNameT' name='nameTable'  header="Numero mesa" max={numberTables.length}></TextWHeaderInput2>
                         </div>
                     </div>
                     <div className="text-center h-full pt-20 ">
@@ -43,10 +44,10 @@ export function DeleteTable(){
 }
 
 
-export function onClickAddTable(){
+export function onClickDeleteMenuItem(){
     let capacityInput = document.getElementById('inpCapacity')
     let data = {
-            capacity:capacityInput.value,
+            capacity: document.getElementById('inpCapacity')
     };
     fetch('http://localhost:8080/api/admin/tables/add', {
     method: 'POST', // or 'PUT'

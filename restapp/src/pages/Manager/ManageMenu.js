@@ -7,14 +7,14 @@ import { SubHeaderAdmin } from "../../Components/Common/SubHeaderAdmin.js";
 
 export function ManageMenu(){
 
-    let headers = ["Nombre", "Categoria","Precio"];
+    let headers = ["Nombre", "Categoria","Precio","Borrar"];
     const [loading,setLoading] = useState(false);
     let menuItems = [
-      { name: "Pola", type: "Bebida", price : 3000 },
-      { name: "Currasco 1/2", type: "Preparacion", price : 27000},
-      { name: "Lasagna", type: "Preparacion", price : 20000 },
-      { name: "Picada 4", type: "Preparacion", price : 57000 },
-      { name: "Gaseosa 300 ml", type: "Bebida", price :  2500},
+      { id:1,name: "Pola", type: "Bebida", price : 3000 },
+      { id:2,name: "Currasco 1/2", type: "Preparacion", price : 27000},
+      { id:3,name: "Lasagna", type: "Preparacion", price : 20000 },
+      { id:4,name: "Picada 4", type: "Preparacion", price : 57000 },
+      { id:5,name: "Gaseosa 300 ml", type: "Bebida", price :  2500},
 
     ];
     const [menu,setMenu] = useState(menuItems);
@@ -22,7 +22,7 @@ export function ManageMenu(){
     useEffect(() => {
       const getProducts = async () => {
         setLoading(true);
-        setMenu(await getDataMenuItems());
+        setMenu( await getDataMenuItems());
         setLoading(false);
       }
       getProducts();
@@ -37,35 +37,23 @@ export function ManageMenu(){
       <SubHeaderAdmin
         headerFrame="Administrar menú"
         child={
-          <div className="w-full h-full ">
-            <div className="float-left w-1/3 h-1/2 grid grid-rows-2 mt-16 pl-20">
-              <div className="flex flex-col justify-center items-center">
-                <ButtonB
-                  text="Crear item"
-                  id="btnCreateItem"
-                  link="../createMenuItem"
-                  event=""
-                  className=""
-                ></ButtonB>
-                <br />
-              </div>
-              <div className="flex flex-col justify-center items-center">
-                <ButtonB
-                  text="Eliminar item"
-                  id="btnDeleteItem"
-                  link="../createMenuItem"
-                  event=""
-                  className=""
-                ></ButtonB>
-                <br />
-              </div>
-            </div>
-            <div className="float-right w-3/5 h-2/3 pr-10 ">
+          <div className="w-full h-full -mt-5">
+            <div className="mx-auto w-4/5 h-2/3 pr-10 -pt-5 ">
               <FrameListSlider
                 headers={headers}
                 subHeaders={menu}
               ></FrameListSlider>
             </div>
+            <div className="flex flex-col justify-center items-center bg-white pt-10">
+                <ButtonB
+                  text="Crear item"
+                  id="btnCreateItem"
+                  link="../createMenuItem"
+                  event=""
+                  className="mt-10"
+                ></ButtonB>
+                <br />
+              </div>
           </div>
         }
       ></SubHeaderAdmin>

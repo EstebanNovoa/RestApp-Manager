@@ -10,17 +10,11 @@ import { DeleteTable } from './pages/Manager/DeleteTable.js';
 import React from 'react';
 import { ManageMenu } from './pages/Manager/ManageMenu';
 import { CreateItemMenu } from './pages/Manager/CreateMenuItem';
+import { DeleteItemMenu } from './pages/Manager/DeleteMenuItem';
 
 
 export default function App() {
-  let test = {username: "Esteban",
-  pendingOrders: "Pendientes: 10",
-  finishedOrders: "Despachados: 10",
-  todaysBooking: "Hoy: 5",
-  tomorrowsBooking: "Mañana: 8",
-  bussyTables: "Ocupadas: 4",
-  avaliableTables: "Disponibles: 2"
-  }
+  let test = {username: "Esteban"}
   return (
     <Router>
       <Routes>
@@ -39,6 +33,7 @@ export default function App() {
               <Route path='deleteTable' element={<DeleteTable></DeleteTable>}></Route>  
               <Route path='manageMenu' element={<ManageMenu></ManageMenu>}></Route>
               <Route path='createMenuItem' element={<CreateItemMenu></CreateItemMenu>}></Route>
+              <Route path='deleteMenuItem/:id' element={<DeleteItemMenu></DeleteItemMenu>}></Route>
           </Route>
           <Route path="client" ></Route>
 
