@@ -39,13 +39,6 @@
     justify-content: center;
 }
 
-.divDate button{
-    display: flex;
-    align-items: center;
-    background-color: transparent;
-    border-color: transparent;
-}
-
 .divDate button a, .valueHour a{
     width: 80%;
     font-family: Cuprum, Arial;

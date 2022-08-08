@@ -49,28 +49,12 @@
     width: 50%;
 }
 
-.imagenYContador button{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    justify-items: flex-end;
-    background-color: transparent;
-    border-color: transparent;
-}
-
 .cantidadComida{
     display: flex;
     justify-content: center;
     width: 50%;
     border-radius: 5px;
     border: solid 2px #2A3863;
-}
-
-button img{
-    width: 20px;
-    height: 20px;
 }
 
 .cantidadComida p{
@@ -97,8 +81,14 @@ button img{
     font-size: 20px;
 }
 
-.divPrecio{
+.divPrecio {
     margin-top: 10px;
+    align-items: center;
+}
+
+.divPrecio .buttonDiv{
+    display: flex;
+    justify-content: center;
 }
 
 .divPrecio a{

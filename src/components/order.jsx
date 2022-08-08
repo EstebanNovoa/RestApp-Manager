@@ -1,34 +1,49 @@
 import React from "react";
-import add from "../resources/icons/add.png";
-import minus from "../resources/icons/minus.png";
-import close from "../resources/icons/close.png";
+import { Button } from "./buttonC";
 import "../styleSheets/order.css"
+import { useState } from "react";
 
 export function Order() {
+
+    const [numItems, setNumItems] = useState(1);
+
+    const addItems = () => {
+        setNumItems(numItems + 1);
+    }
+
+    const quitItems = () => {
+        if ( numItems > 1) {
+            setNumItems(numItems - 1);
+        }  
+    }
+
+    const deleOrder = () =>{
+        console.log("tratando de cerrar ventana");
+    }
+
     return (
         <div className="myOrder">
 
             <div className="textoDescripcion">
                 <a>Filete de res en salsa</a>
-                <button>
-                    <img className="removeItem" src={close} />
-                </button>
+                <div className="closeButton">
+                    <Button isCloseButton={true} event = { deleOrder }/>
+                </div>
+                
             </div>
 
             <div className="subTotalYBotones">
-                <a href="priceU">$45.000</a>
+                <a >$45.000</a>
                 <div className="divBotones">
-                    <button className="buttonAdd">
-                        <img className="addIcon" src={add} />
-                    </button>
+
+                    <Button isAddButton={true} event = { addItems }/>
 
                     <div className="cantidadComida">
-                        <p>1</p>
+                        <p> { numItems }</p>
                     </div>
 
-                    <button className="buttonMinus">
-                        <img className="removeIcon" src={minus} />
-                    </button>
+                    <Button event = { quitItems } />
+
                 </div>
             </div>
 

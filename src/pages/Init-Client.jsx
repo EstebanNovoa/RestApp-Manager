@@ -2,6 +2,7 @@ import { Header } from "../components/Header"
 import { Food } from "../components/food"
 import { Order } from "../components/order"
 import { OrderHistory } from "../components/orderHistory"
+import { Button } from "../components/buttonC";
 import search from "../resources/icons/search.png"
 import filter from "../resources/icons/filter.png"
 import "../styleSheets/foodContent.css"
@@ -12,18 +13,66 @@ import "../styleSheets/myOrders.css"
 import "../styleSheets/subHeader.css"
 import user from "../resources/icons/user2.png"
 import date from "../resources/icons/calendar.png"
-import hour from "../resources/icons/clock.png"
+import hourIcon from "../resources/icons/clock.png"
 import people from "../resources/icons/people.png"
-import upArrow from "../resources/icons/upArrow.png"
 import downArrow from "../resources/icons/downArrow.png"
-import minus from "../resources/icons/minus.png"
-import add from "../resources/icons/add.png"
 import React from 'react';
+import { useState } from "react";
 
 export function InitClient() {
+
+    const [numItems, setNumItems] = useState(1);
+    const [hour, setHour] = useState(17);
+    const [minutes, setMinutes] = useState(32);
+
+    const addMinutes = () => {
+        if (minutes < 60) {
+            setMinutes(minutes + 1)
+        } else {
+            setMinutes(minutes - 60)
+        }
+    }
+
+    const quitMinutes = () => {
+        if (minutes > 0) {
+            setMinutes(minutes - 1)
+        } else {
+            setMinutes(minutes + 60)
+        }
+    }
+
+    const addHour = () => {
+        if (hour < 24) {
+            setHour(hour + 1)
+        } else {
+            setHour(hour - 24)
+        }
+    }
+
+    const quitHour = () => {
+        if (hour > 0) {
+            setHour(hour - 1)
+        } else {
+            setHour(hour + 24)
+        }
+    }
+
+    const addItems = () => {
+        setNumItems(numItems + 1);
+    }
+
+    const quitItems = () => {
+        if (numItems > 1) {
+            setNumItems(numItems - 1);
+        }
+    }
+
     return (
 
         <div className="App">
+
+            <script src="../styleSheets/popUp.js"></script>
+
             <Header />
 
             {/* Contenedor con icono de usuario y 4 textos */}
@@ -37,7 +86,7 @@ export function InitClient() {
                 <a href="#booking" className="item2">Reservar</a>
                 <a href="#orders" className="item4">Mis pedidos</a>
             </div>
-            
+
             {/* Contenedor del carrusel */}
             <div className="generalContainer" >
                 <ul className="carrusel" >
@@ -62,6 +111,21 @@ export function InitClient() {
                                 <Food />
                                 <Food />
                             </div>
+
+                            <div className="popUp" id="popUp">
+
+                                <div className="text">
+                                    <a>¡ El item  se ha añadido al carrito !</a>
+                                </div>
+
+                                <div className="containerButton">
+                                    <button>
+                                        <a> Aceptar </a>
+                                    </button>
+                                </div>
+
+                            </div>
+
                         </div>
                     </li>
 
@@ -79,9 +143,9 @@ export function InitClient() {
                             </div>
 
                             <div className="totalDiv">
-                                <div className="total"><a href="">Total</a></div>
-                                <div className="value"><a href="">$154.000</a></div>
-                                <div className="button"><button> <a href="">Confirmar pedido</a> </button></div>
+                                <div className="total"><a>Total</a></div>
+                                <div className="value"><a>$154.000</a></div>
+                                <div className="button"><button> <a>Confirmar pedido</a> </button></div>
                             </div>
                         </div>
                     </li>
@@ -100,7 +164,7 @@ export function InitClient() {
                                         <div className="imgD"><img src={date} /></div>
                                         <div className="divButtonArrow">
                                             <button className="buttonDate">
-                                                <a href="">17/06/2000</a>
+                                                <a>17/06/2000</a>
                                                 <img className="iconDate" src={downArrow} />
                                             </button>
                                         </div>
@@ -111,16 +175,16 @@ export function InitClient() {
                                     </div>
 
                                     <div className="hour">
-                                        <div className="imgH"><img src={hour} /></div>
+                                        <div className="imgH"><img src={hourIcon} /></div>
                                         <div className="divArrows">
                                             <div className="arrowsHour">
-                                                <button><img src={upArrow} /></button>
-                                                <button><img src={downArrow} /></button>
+                                                <Button isUpArrow={true} event={addHour} />
+                                                <Button isDownArrow={true} event={quitHour} />
                                             </div>
-                                            <div className="valueHour"> <a>19:20</a></div>
+                                            <div className="valueHour"> <a> {hour}:{minutes}</a></div>
                                             <div className="arrowsMinutes">
-                                                <button><img src={upArrow} /></button>
-                                                <button><img src={downArrow} /></button>
+                                                <Button isUpArrow={true} event={addMinutes} />
+                                                <Button isDownArrow={true} event={quitMinutes} />
                                             </div>
                                         </div>
                                     </div>
@@ -131,9 +195,9 @@ export function InitClient() {
                                     <div className="amount">
                                         <div className="imgP"><img src={people} /></div>
                                         <div className="divButtonsPeople">
-                                            <button><img src={minus} /></button>
-                                            <div className="valueAmount"><a>1</a></div>
-                                            <button><img src={add} /></button>
+                                            <Button isAddButton={true} event={addItems} />
+                                            <div className="valueAmount"><a> {numItems}</a></div>
+                                            <Button event={quitItems} />
                                         </div>
                                     </div>
 
@@ -148,7 +212,7 @@ export function InitClient() {
                                     <div className="question"><a href="">¿Cuándo te veremos?</a></div>
                                     <div className="buttonB">
                                         <button>
-                                            <a href="">Reservar</a>
+                                            <a>Reservar</a>
                                         </button>
                                     </div>
                                 </div>
@@ -170,13 +234,13 @@ export function InitClient() {
                             </div>
 
                             <div className="contentHistories">
-                                <OrderHistory/>
-                                <OrderHistory/>
-                                <OrderHistory/>
+                                <OrderHistory />
+                                <OrderHistory />
+                                <OrderHistory />
                             </div>
 
-                            <div className = "divTotalHistories">
-                                <a href="">Total de pedidos: 3</a>
+                            <div className="divTotalHistories">
+                                <a>Total de pedidos: 3</a>
                             </div>
                         </div>
                     </li>

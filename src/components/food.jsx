@@ -1,12 +1,28 @@
 import React from "react";
 import comida from "../images/comida.jpg";
-import add from "../resources/icons/add.png";
-import minus from "../resources/icons/minus.png";
+import { Button } from "./buttonC";
 import "../styleSheets/food.css"
+import { useState } from "react";
 
 export function Food() {
+
+    const [numItems, setNumItems] = useState(1);
+
+    const addItems = () => {
+        setNumItems(numItems + 1);
+    }
+
+    const quitItems = () => {
+        if (numItems > 1) {
+            setNumItems(numItems - 1);
+        }
+    }
+
     return (
         <div className="contenedorComida">
+
+            <script src="../styleSheets/popUp.js"></script>
+            
             <div className="imagenYContador">
 
                 <div className="divImagen">
@@ -15,17 +31,12 @@ export function Food() {
                     />
                 </div>
                 <div className="divBotones">
-                    <button className="buttonAdd">
-                        <img className="addIcon" src={add} />
-                    </button>
-
+                    <Button isAddButton={true} event={addItems} />
                     <div className="cantidadComida">
-                        <p>1</p>
+                        <p> {numItems} </p>
                     </div>
 
-                    <button className="buttonMinus">
-                        <img className="removeIcon" src={minus} />
-                    </button>
+                    <Button event={quitItems} />
                 </div>
 
 
@@ -40,8 +51,11 @@ export function Food() {
             <div className="divPrecio">
                 <a>Precio</a>
                 <p>$47.500</p>
-                <button className="botonAñadir"> <a>Añadir</a></button>
+                <div className="buttonDiv">
+                    <button className="botonAñadir" id='openPopUp'> <a>Añadir</a></button>
+                </div>
             </div>
+
         </div>
     );
 }

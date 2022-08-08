@@ -58,5 +58,58 @@ ul.carrusel li:nth-child(1n):target{
     height: 1.2em;
 }
 
+.popUp.active{
+    opacity: 1;
+}
+
+.popUp{
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -280px;
+    width: 400px;
+    height: 200px;
+    border: solid 3px #2A3863;
+    border-radius: 10px;
+    background-color: white;
+    opacity: 0;
+}
+
+.popUp .text{
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popUp .text a{
+    font-size: 30px;
+    font-family: Cuprum, Arial;
+    color: #2A3863;
+}
+
+.popUp .containerButton{
+    height: 30%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popUp .containerButton button{
+    display: flex;
+    height:60%;
+    width: 40%;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: solid 3px #2A3863;
+}
+
+.popUp .containerButton button a{
+    font-family: Cuprum, Arial;
+    font-size: 25px;
+}
+
 
 
