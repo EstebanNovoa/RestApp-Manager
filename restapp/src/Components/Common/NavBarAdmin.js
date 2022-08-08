@@ -10,9 +10,9 @@ export function NavBarAdmin(){
             <Link to= "../home"><li ><a className="hover:text-main-orange ">Inicio</a></li></Link>
             <Link to= "../booking"><li><a className="hover:text-main-orange ">Reservaciones</a></li></Link>
             <Link to= "../manageTables"><li ><a className="hover:text-main-orange ">Administrar Mesas</a></li></Link>
-            <Link to= "../manageMenu"><li ><a className="hover:text-main-orange ">Administrar Menú</a></li></Link>
-            <Link to= "../orders"><li><a className="hover:text-main-orange ">Pedidos</a></li></Link>
-            <Link to= "../registry"><img className="w-11 h-11 -mt-2 inline mr-24" src={accountIcon}></img></Link>
+            <Link to= ""><li ><a className="hover:text-main-orange ">Administrar Menú</a></li></Link>
+            <Link to= ""><li><a className="hover:text-main-orange ">Pedidos</a></li></Link>
+            <Link to= ""><img className="w-11 h-11 -mt-2 inline mr-24" src={accountIcon}></img></Link>
         </ul>
         <div className="mt-16 w-5/6 mx-auto"><img src={headerLine}></img></div>
         </div>

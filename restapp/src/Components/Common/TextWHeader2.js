@@ -16,6 +16,7 @@ class Prop{
     text;
     id;
     name;
+    max;;
     max;
 }
 

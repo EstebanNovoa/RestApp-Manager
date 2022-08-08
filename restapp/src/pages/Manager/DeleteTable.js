@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState }, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { ButtonB } from "../../Components/Common/ButtonB.js";
 import { Header } from "../../Components/Common/Header.js";
@@ -6,10 +7,20 @@ import { NavBarAdmin } from "../../Components/Common/NavBarAdmin.js";
 import { SubHeaderAdmin } from "../../Components/Common/SubHeaderAdmin.js";
 import { TextInput } from "../../Components/Common/TextInput.js";
 import { TextInputWHeader } from "../../Components/Common/TextInputWHeader.js";
-import { TextWHeader, TextWHeaderInput, TextWHeaderInput2 } from "../../Components/Common/TextWHeader2.js";
+import { TextWHeader, TextWHeaderInput, TextWHeaderInput2, TextWHeaderInput2 } from "../../Components/Common/TextWHeader2.js";
 
 
 export function DeleteTable(){
+    const [numberTables,setNumberTables] = useState(0);
+    const [loading,setLoading] = useState(true);
+    useEffect(() => {
+        const getProducts = async () => {
+          setLoading(true);
+          setNumberTables(await getTotalTables());
+          setLoading(false);
+        }
+        getProducts();
+      }, []);
     const [numberTables,setNumberTables] = useState(0);
     const [loading,setLoading] = useState(true);
     useEffect(() => {
@@ -25,6 +36,7 @@ export function DeleteTable(){
             <Header></Header>
             <NavBarAdmin></NavBarAdmin>
             { loading == true ? <div className="h-screen w-screen text-4xl text-white font-cuprum">Cargando...</div> :
+            { loading == true ? <div className="h-screen w-screen text-4xl text-white font-cuprum">Cargando...</div> :
             <SubHeaderAdmin headerFrame="Administrar mesas - Crear Mesa" child={ 
                 <div className="w-full h-full ">
                     <div className="h-1/3">
@@ -39,7 +51,7 @@ export function DeleteTable(){
             }>
                 
             </SubHeaderAdmin>
-        }</div>
+        }}</div>
     );
 }
 
