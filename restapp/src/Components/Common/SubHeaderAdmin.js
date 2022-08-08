@@ -15,8 +15,8 @@ export function SubHeaderAdmin(props) {
           className="h-0.5 w-full mx-auto pl-2 pr-2 mt-2"
         ></img>
       </div>
-      {props.child}
-      <div className="w-screen h-20 bg-main-blue bottom-0"></div>
+      {props.child} 
+      <div className="w-screen h-20 bg-main-blue "></div>
     </div>
   );
 }

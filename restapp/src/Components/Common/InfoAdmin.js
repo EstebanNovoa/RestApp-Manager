@@ -8,11 +8,10 @@ export function InfoAdmin(props){
             <a className="text-3xl ">{props.headerFrame}</a>
             <img src={line} className="w-5/6 mx-auto mt-2"></img>
             <div className="grid grid-rows-3 h-2/3 mt-6">
-                <a className="text-xl">{props.headerInfo1}</a><br/>
-                <a className="text-xl">{props.headerInfo2}</a><br/>
-                <Link to={props.link} className="text-xl"><a className="underline">Ir</a></Link>
+                <a className="text-2xl">{props.headerInfo1}</a><br/>
+                <a className="text-2xl">{props.headerInfo2}</a><br/>
+                <Link to={props.link} className="text-2xl"><a className="underline">Ir</a></Link>
             </div>
-
         </div>
     );
 }

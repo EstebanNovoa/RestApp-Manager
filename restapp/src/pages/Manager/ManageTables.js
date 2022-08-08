@@ -11,7 +11,13 @@ export function ManageTables(){
     let headers = ["Mesa", "Capacidad"];
     const [loading,setLoading] = useState(false);
     let tablesw = [
-
+      { tableNumber: "Mesa 1", capacity: "5" },
+      { tableNumber: "Mesa 2", capacity: "2" },
+      { tableNumber: "Mesa 3", capacity: "4" },
+      { tableNumber: "Mesa 4", capacity: "2" },
+      { tableNumber: "Mesa 5", capacity: "2" },
+      { tableNumber: "Mesa 6", capacity: "2" },
+      { tableNumber: "Mesa 7", capacity: "2" },
     ];
     const [tables,setTables] = useState(tablesw);
   
@@ -49,7 +55,7 @@ export function ManageTables(){
                 <ButtonB
                   text="Eliminar mesa"
                   id="btnCreateTable"
-                  link=""
+                  link="../deleteTable"
                   event=""
                   className=""
                 ></ButtonB>
@@ -72,7 +78,7 @@ export function ManageTables(){
 
 
 export async function getDataTables() {
-    const response = await fetch('http://localhost:8080/api/admin/tables');
+    const response = await fetch('https://restapp-restaurant-manager.herokuapp.com/api/admin/tables');
     return await response.json();
 }
 

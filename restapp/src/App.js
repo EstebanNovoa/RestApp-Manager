@@ -8,17 +8,15 @@ import { ManageTables } from './pages/Manager/ManageTables.js';
 import { CreateTable } from './pages/Manager/CreateTable.js';
 import { DeleteTable } from './pages/Manager/DeleteTable.js';
 import React from 'react';
+import { ManageMenu } from './pages/Manager/ManageMenu';
+import { CreateItemMenu } from './pages/Manager/CreateMenuItem';
+import { DeleteItemMenu } from './pages/Manager/DeleteMenuItem';
+import { Orders } from './pages/Manager/Orders';
+import { OrderDetails } from './pages/Manager/OrderDetails';
 
 
 export default function App() {
-  let test = {username: "Esteban",
-  pendingOrders: "Pendientes: 10",
-  finishedOrders: "Despachados: 10",
-  todaysBooking: "Hoy: 5",
-  tomorrowsBooking: "Mañana: 8",
-  bussyTables: "Ocupadas: 4",
-  avaliableTables: "Disponibles: 2"
-  }
+  let test = {username: "Esteban"}
   return (
     <Router>
       <Routes>
@@ -32,9 +30,17 @@ export default function App() {
               tomorrowsBooking={test.tomorrowsBooking} bussyTables={test.bussyTables} avaliableTables={test.avaliableTables}>
               </HomeAdm>}></Route>
               <Route path='booking' element={<BookingAdm></BookingAdm>}></Route>     
-              <Route path='manageTables' element={<ManageTables></ManageTables>}>              </Route>
+              <Route path='manageTables' element={<ManageTables></ManageTables>}></Route>
               <Route path='createTable' element={<CreateTable></CreateTable>}></Route>     
-              <Route path='deleteTable' element={<DeleteTable></DeleteTable>}></Route>  </Route>
+              <Route path='deleteTable' element={<DeleteTable></DeleteTable>}></Route>  
+              <Route path='manageMenu' element={<ManageMenu></ManageMenu>}></Route>
+              <Route path='createMenuItem' element={<CreateItemMenu></CreateItemMenu>}></Route>
+              <Route path='deleteMenuItem/:id' element={<DeleteItemMenu></DeleteItemMenu>}></Route>
+              <Route path='orders' element={<Orders></Orders>}></Route>
+              <Route path='orders/:id' element={<OrderDetails></OrderDetails>}></Route>{/*CORREGIR*/}
+          </Route>
+          <Route path="client" ></Route>
+
       </Routes>
   </Router>
   );

@@ -8,15 +8,23 @@ export function ListInput(prop) {
     </div>
   );
 }
+export function ListInputNormalForm(prop) {
+  return (
+    <div>
+      <div className="border-solid  border-black bg-transparent outline-none text-main-blue  appearance-none"><a className="font-cuprum text-3xl " > {prop.headerText}</a></div>   
+      <select className="mt-6 mx-auto w-5/6 font-cuprum text-2xl border-solid border-b-2 border-black  outline-none text-main-blue placeholder  appearance-none text-center" id={prop.id}>{generateOptionValues(prop.values)}</select>
+    </div>
+  );
+}
 
 class Prop {
   headerText;
   values;
+  id;
 }
 
 export function generateOptionValues(values) {
   return values.map((value) => {
-    console.log(value);
     return <option value={value}> {value}</option>;
   });
 }
