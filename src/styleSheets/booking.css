@@ -54,14 +54,24 @@
     justify-content: center;
 }
 
-.divButtonArrow button{
-    width: 70%;
-    height: 34px;
-    align-items: center;
-    justify-content: center;
-    background-color: white;
-    border: solid 2px #2A3863;
+.divButtonArrow .divPicker .datePicker{
+    cursor: pointer;
+}
+
+.divButtonArrow .divPicker img{
+    position: relative;
+    left: -5px;
+    margin-top: 10px;
+    margin-left: -10px;
+}
+
+.divButtonArrow .divPicker{
+    display: flex;
+    width: 30%;
+    border: solid 3px #2A3863;
     border-radius: 10px;
+    cursor: pointer;
+    font-size: 40px;
 }
 
 .valueHour a{
@@ -151,4 +161,3 @@
     color: white;
     text-decoration: none;
 }
-

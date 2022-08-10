@@ -18,8 +18,11 @@ import people from "../resources/icons/people.png"
 import downArrow from "../resources/icons/downArrow.png"
 import React from 'react';
 import { useState } from "react";
+import { DatePicker } from "@material-ui/pickers";
 
 export function InitClient() {
+
+    const [dateValue, changeDate] = useState(new Date());
 
     const [numItems, setNumItems] = useState(1);
     const [hour, setHour] = useState(17);
@@ -163,10 +166,13 @@ export function InitClient() {
                                     <div className="date">
                                         <div className="imgD"><img src={date} /></div>
                                         <div className="divButtonArrow">
-                                            <button className="buttonDate">
-                                                <a>17/06/2000</a>
+                                            <div className="divPicker">
+                                                <DatePicker className='datePicker' value={dateValue} onChange={changeDate}
+                                                    minDate={new Date()}
+                                                />
                                                 <img className="iconDate" src={downArrow} />
-                                            </button>
+                                            </div>
+
                                         </div>
                                     </div>
 
