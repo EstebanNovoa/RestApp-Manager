@@ -1,26 +1,12 @@
 package com.restaurant_manager.restaurant_manager.controllers;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
+import com.restaurant_manager.restaurant_manager.models.details.Detail;
+import com.restaurant_manager.restaurant_manager.models.details.repository.DetailsRepo;
 import com.restaurant_manager.restaurant_manager.models.orders.Order;
 import com.restaurant_manager.restaurant_manager.models.orders.orderDTO.OrderDTO;
 import com.restaurant_manager.restaurant_manager.models.orders.repository.OrderRepository;
 import com.restaurant_manager.restaurant_manager.models.products.Product;
+import com.restaurant_manager.restaurant_manager.models.products.ProductDTO;
 import com.restaurant_manager.restaurant_manager.models.products.repository.ProductRepository;
 import com.restaurant_manager.restaurant_manager.models.reserves.Reserve;
 import com.restaurant_manager.restaurant_manager.models.reserves.dto.ReserveDto;
@@ -29,10 +15,15 @@ import com.restaurant_manager.restaurant_manager.models.tables.RestaurantTable;
 import com.restaurant_manager.restaurant_manager.models.tables.repository.TableRepository;
 import com.restaurant_manager.restaurant_manager.models.users.User;
 import com.restaurant_manager.restaurant_manager.models.users.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.*;
 
 @Controller
 @RequestMapping("/api/admin")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ControllerRoleAdmin {
 
     @Autowired
@@ -48,7 +39,10 @@ public class ControllerRoleAdmin {
     private UserRepository userRepository;
 
     @Autowired
-    ReserveRepository reserveRepository;
+    private ReserveRepository reserveRepository;
+
+    @Autowired
+    private DetailsRepo detailsRepo;
 
     // users
     @RequestMapping(value = "/users", method = RequestMethod.GET)
@@ -90,26 +84,24 @@ public class ControllerRoleAdmin {
 
     // tables
 
-    @CrossOrigin(origins = "http://localhost:3000")
+
     @GetMapping("/tables")
     public ResponseEntity<?> getTables() {
         return ResponseEntity.ok(tableRepository.findAll());
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(path = "/tables/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getTable(@PathVariable Long id) {
         return ResponseEntity.ok(tableRepository.findById(id));
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+
     @RequestMapping(path = "/tables/add", method = RequestMethod.POST)
     public ResponseEntity<?> addTable(@RequestBody RestaurantTable table) {
         tableRepository.save(table);
         return ResponseEntity.ok(table);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(path = "/tables/update/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> updateTable(@RequestBody RestaurantTable table, @PathVariable Long id) {
         tableRepository.findById(id).map(t -> {
@@ -126,7 +118,7 @@ public class ControllerRoleAdmin {
         return ResponseEntity.ok("Table updated");
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+
     @DeleteMapping("/tables/delete/{id}")
     public ResponseEntity<?> deleteTable(@PathVariable Long id) {
         tableRepository.delete(
@@ -134,7 +126,7 @@ public class ControllerRoleAdmin {
         return ResponseEntity.ok("Table deleted");
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+
     @RequestMapping(path = "/tables/count", method = RequestMethod.GET)
     public ResponseEntity<?> getTableCount() {
         Map<String, Long> map = new HashMap<>();
@@ -145,38 +137,34 @@ public class ControllerRoleAdmin {
 
     // products
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(path = "/products", method = RequestMethod.GET)
     public ResponseEntity<?> getProducts() {
         return ResponseEntity.ok(productRepository.findAll());
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(path = "/products/get/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getProduct(@PathVariable Long id) {
         return ResponseEntity.ok(productRepository.findById(id));
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(path = "/products/add", method = RequestMethod.POST)
     public ResponseEntity<?> addProduct(@RequestBody Product product) {
         productRepository.save(product);
         return ResponseEntity.ok(product);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/products/update/{id}")
     public ResponseEntity<?> updateProduct(@RequestBody Product product, @PathVariable Long id) {
         productRepository.findById(id).map(p -> {
-            if (product.getName() != null || product.getName() != "")
+            if (product.getName() != null || !Objects.equals(product.getName(), ""))
                 p.setName(product.getName());
             if ((product.getPrice() != 0.0 || product.getPrice() != 0) && product.getPrice() > 0)
                 p.setPrice(product.getPrice());
-            if (product.getDescription() != null || product.getDescription() != "")
+            if (product.getDescription() != null || !Objects.equals(product.getDescription(), ""))
                 p.setDescription(product.getDescription());
             if (product.getPreparationTime() != 0 || product.getPreparationTime() != 0.0)
                 p.setPreparationTime(product.getPreparationTime());
-            if (product.getType() != null || product.getType() != "")
+            if (product.getType() != null || !Objects.equals(product.getType(), ""))
                 p.setType(product.getType());
             return productRepository.save(p);
         }).orElseGet(() -> {
@@ -185,83 +173,90 @@ public class ControllerRoleAdmin {
         return ResponseEntity.ok("Product updated");
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping(path = "/products/delete/{name}")
-    public ResponseEntity<?> deleteProduct(@PathVariable String nameString) {
-        productRepository.delete(productRepository.findByName(nameString));
+    public ResponseEntity<?> deleteProduct(@PathVariable String name) {
+        productRepository.delete(productRepository.findByName(name));
+        return ResponseEntity.ok("Product deleted");
+    }
+
+    @RequestMapping (path = "/products/delete/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
+        productRepository.deleteById(id);
         return ResponseEntity.ok("Product deleted");
     }
 
     // orders
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(path = "/orders/all", method = RequestMethod.GET)
     public ResponseEntity<?> getAllOrders() {
         return ResponseEntity.ok(orderRepository.findAll());
     }
+    public void orderToOrderDTO(){
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    }
     @RequestMapping(path = "/orders/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getOrder(@PathVariable Long id) {
         return ResponseEntity.ok(orderRepository.findById(id));
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(path = "/orders/add", method = RequestMethod.POST)
     public ResponseEntity<?> addOrder(@RequestBody OrderDTO orderDto) {
-        Order order = orderDtoToOrder(orderDto);
-        orderRepository.save(order);
-        return ResponseEntity.ok(order);
+        orderDtoToOrder(orderDto);
+        return ResponseEntity.ok("Order added");
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
-    @RequestMapping(path = "/orders/update/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateOrder(@RequestBody OrderDTO orderDto, @PathVariable Long id) {
-        Order order = orderDtoToOrder(orderDto);
-        orderRepository.findById(id).map(o -> {
-            if (order.getState() != null || order.getState() != "")
-                o.setState(order.getState());
-            if (order.getReserve() != null)
-                o.setReserve(order.getReserve());
-            if (order.getWorker() != null)
-                o.setWorker(order.getWorker());
-            if (order.getClient() != null)
-                o.setClient(order.getClient());
-            return orderRepository.save(o);
-        }).orElseGet(() -> {
-            return orderRepository.save(order);
-        });
-        return ResponseEntity.ok("Order updated");
-    }
+//    @RequestMapping(path = "/orders/update/{id}", method = RequestMethod.PUT)
+//    public ResponseEntity<?> updateOrder(@RequestBody OrderDTO orderDto, @PathVariable Long id) {
+//        Order order = orderDtoToOrder(orderDto);
+//        orderRepository.findById(id).map(o -> {
+//            if (order.getState() != null || !Objects.equals(order.getState(), ""))
+//                o.setState(order.getState());
+//            if (order.getReserve() != null)
+//                o.setReserve(order.getReserve());
+//            if (order.getWorker() != null)
+//                o.setWorker(userRepository.findById(order.getWorker().getId()));
+//            if (order.getClient() != null)
+//                o.setClient(userRepository.findById(order.getClient().getId()));
+//            return orderRepository.save(o);
+//        }).orElseGet(() -> {
+//            return orderRepository.save(order);
+//        });
+//        return ResponseEntity.ok("Order updated");
+//    }
 
-    private Order orderDtoToOrder(OrderDTO order) {
-        Order o = new Order();
-        o.setState(order.getState());
-        if (order.getReserve() != 0)
-            o.setReserve(reserveRepository.findById(order.getReserve()));
-        if (order.getWorker() != 0)
-            o.setWorker(userRepository.findById(order.getWorker()));
-        o.setClient(userRepository.findById(order.getClient()));
-        RestaurantTable table = tableRepository.findById(order.getTable());
+    private void orderDtoToOrder(OrderDTO orderDTO) {
+        Order order = new Order();
+        System.out.println(order.getId());
+        order.setState(orderDTO.getState());
+        if (orderDTO.getReserve() != 0)
+            order.setReserve(reserveRepository.findById(orderDTO.getReserve()));
+        if (orderDTO.getWorker() != 0)
+            order.setWorker(userRepository.findById(orderDTO.getWorker()));
+        order.setClient(userRepository.findById(orderDTO.getClient()));
+        RestaurantTable table = tableRepository.findById(orderDTO.getTable());
         if (table != null) {
             if (table.isAvailable()) {
-                o.setTable(table);
+                order.setTable(table);
                 table.setIsAvailable(false);
                 tableRepository.save(table);
             }
         }
-        List<Product> products = new ArrayList<>();
-        order.getProducts().forEach(p -> {
-            Product product = productRepository.findById(p)
-                    .orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + p));
-            products.add(product);
-            o.setTotalPrice(o.getTotalPrice() + product.getPrice());
-        });
-        o.setProducts(products);
-        return o;
+
+        Order savedOrder = orderRepository.save(order);
+        double total = 0;
+        for ( ProductDTO productDTO : orderDTO.getProducts()) {
+            Detail detail = new Detail();
+            detail.setProduct(productRepository.findById(productDTO.getId()).get());
+            detail.setQuantity(productDTO.getQuantity());
+            detail.setPrice(detail.getProduct().getPrice());
+            total+=detail.getProduct().getPrice()*detail.getQuantity();
+            detail.setOrder(savedOrder.getId());
+            detailsRepo.save(detail);
+        }
+        savedOrder.setTotalPrice(total);
+        orderRepository.save(savedOrder);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping(path = "/orders/delete/{id}")
     public ResponseEntity<?> deleteOrder(@PathVariable Long id) {
         orderRepository.delete(orderRepository.findById(id)
@@ -269,7 +264,6 @@ public class ControllerRoleAdmin {
         return ResponseEntity.ok("Order deleted");
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(path = "/orders/count", method = RequestMethod.GET)
     public ResponseEntity<?> getOrdersCount() {
         Map<String, Long> map = new HashMap<>();
@@ -280,20 +274,34 @@ public class ControllerRoleAdmin {
     }
 
     // reserves
-
-    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(path = "/reserves/all", method = RequestMethod.GET)
     public ResponseEntity<?> getAllReserves() {
         return ResponseEntity.ok(reserveRepository.findAll());
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(path = "/reserves/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getReserve(@PathVariable Long id) {
         return ResponseEntity.ok(reserveRepository.findById(id));
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @RequestMapping(path = "/reserves/f", method = RequestMethod.GET)
+    public ResponseEntity<?> getFormattedReserves() {
+        List<Reserve> reserves = reserveRepository.findAll();
+        List<Map<String, String>> reservesMap = new ArrayList<>();
+        reserves.forEach(r -> {
+            String hour = r.getReserveDate().getHour() + ":" + r.getReserveDate().getMinute() + ":" + r.getReserveDate().getSecond();
+            String date = r.getReserveDate().getDayOfMonth() + "/" + r.getReserveDate().getMonthValue() + "/" + r.getReserveDate().getYear();
+            String people = String.valueOf(r.getAmountOfPeople());
+            Map<String, String> map = new HashMap<>();
+            map.put("id", String.valueOf(r.getId()));
+            map.put("hour", hour);
+            map.put("date", date);
+            map.put("people", people);
+            reservesMap.add(map);
+        });
+        return ResponseEntity.ok(reservesMap);
+    }
+
     @RequestMapping(path = "/reserves/add", method = RequestMethod.POST)
     public ResponseEntity<?> addReserve(@RequestBody ReserveDto reserveDto) {
         Reserve reserve = reserveDtoToReserve(reserveDto);
@@ -301,7 +309,7 @@ public class ControllerRoleAdmin {
         return ResponseEntity.ok(reserve);
     }
 
-    private Reserve reserveDtoToReserve(ReserveDto reserveDto) {
+    public Reserve reserveDtoToReserve(ReserveDto reserveDto) {
         Reserve reserve = new Reserve();
         reserve.setReserveDate(reserveDto.getReserveDate());
         reserve.setIsDispatched(reserveDto.isIsDispatched());
@@ -311,7 +319,6 @@ public class ControllerRoleAdmin {
         return reserve;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping(path = "/reserves/delete/{id}")
     public ResponseEntity<?> deleteReserve(@PathVariable Long id) {
         reserveRepository.delete(reserveRepository.findById(id)

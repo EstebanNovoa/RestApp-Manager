@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.restaurant_manager.restaurant_manager.models.users.User;
+import com.restaurant_manager.restaurant_manager.models.users.dto.UserInfoDto;
 
 @Entity
 @Table(name = "reserves")
@@ -121,8 +122,8 @@ public class Reserve {
     /**
      * @return User return the client
      */
-    public User getClient() {
-        return client;
+    public UserInfoDto getClient() {
+        return new UserInfoDto(client.getId(), client.getName(), client.getLastName(), client.getEmail());
     }
 
     /**

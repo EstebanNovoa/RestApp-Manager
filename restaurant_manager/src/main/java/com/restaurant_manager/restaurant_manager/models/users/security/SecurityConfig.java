@@ -16,6 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.restaurant_manager.restaurant_manager.models.users.UserService.UserService;
 import com.restaurant_manager.restaurant_manager.models.users.security.filter.CustomAuthenticationFilter;
 import com.restaurant_manager.restaurant_manager.models.users.security.filter.CustomAuthorizationFilter;
+import org.springframework.security.web.header.writers.StaticHeadersWriter;
 
 @Configuration
 @EnableWebSecurity
@@ -49,16 +50,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         customAuthenticationFilter.setFilterProcessesUrl("/api/login");
         http.cors().disable();
         http.csrf().disable();
-        // http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        // http.authorizeRequests().antMatchers("/api/admin/**").hasAnyAuthority("ROLE_ADMIN");
-        // http.authorizeRequests().antMatchers("/api/user/**").hasAnyAuthority("ROLE_USER");
-        // http.authorizeRequests().antMatchers("/api/worker/**").hasAnyAuthority("ROLE_WORKER");
-        // http.authorizeRequests().antMatchers("/api/login/**","/refresh-token/**").permitAll();
-        // http.authorizeRequests().antMatchers("/api/register/**").permitAll();
-        // http.authorizeRequests().anyRequest().authenticated();
+        http.authorizeRequests().antMatchers("/").permitAll();
+//        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//        http.authorizeRequests().antMatchers("/api/admin/**").hasAnyAuthority("ROLE_ADMIN");
+//        http.authorizeRequests().antMatchers("/api/user/**").hasAnyAuthority("ROLE_USER");
+//        http.authorizeRequests().antMatchers("/api/worker/**").hasAnyAuthority("ROLE_WORKER");
+//        http.authorizeRequests().antMatchers("/api/login/**", "/refresh-token/**").permitAll();
+//        http.authorizeRequests().antMatchers("/api/register/**").permitAll();
+//        http.authorizeRequests().anyRequest().authenticated();
         http.authorizeRequests().anyRequest().permitAll();
-        //http.addFilter(customAuthenticationFilter);
-        //http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+//        http.addFilter(customAuthenticationFilter);
+//        http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean
