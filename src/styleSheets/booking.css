@@ -1,0 +1,163 @@
+.divBooking{
+    width: inherit;
+    height: inherit;
+    background-color: white;
+}
+
+.containerBooking{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.divDate, .divAcept{
+    width: 50%;
+    height: 317px;
+}
+
+.date, .hour, .amount{
+    width: 70%;
+    align-items: center;
+    margin-left: auto;
+    margin-top: 5%;
+    border-bottom: solid 2px #F58500;
+}
+
+.divArrows img, .divButtonArrow img{
+    width: 15px;
+    height: 15px;
+} 
+
+.imgD img, .imgH img, .imgP img{
+    width: 40px;
+    height: 40px;
+    margin-left: 20px;
+}
+
+.date, .hour, .amount, .divArrows, .divButtonsPeople{
+    display: flex;
+    justify-content: center;
+}
+
+.divDate button a, .valueHour a{
+    width: 80%;
+    font-family: Cuprum, Arial;
+    font-size: 25px;
+    color: #2A3863;
+    text-decoration: none;
+}
+
+.divButtonArrow, .divArrows, .divButtonsPeople{
+    width: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.divButtonArrow .divPicker .datePicker{
+    cursor: pointer;
+}
+
+.divButtonArrow .divPicker img{
+    position: relative;
+    left: -5px;
+    margin-top: 10px;
+    margin-left: -10px;
+}
+
+.divButtonArrow .divPicker{
+    display: flex;
+    width: 30%;
+    border: solid 3px #2A3863;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 40px;
+}
+
+.valueHour a{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.divButtonsPeople img{
+    width: 25px;
+    height: 25px;
+}
+
+.divButtonsPeople .valueAmount{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    height: 25px;
+    border: solid 2px #2A3863;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.divButtonsPeople .valueAmount a{
+    font-family: Cuprum, Arial;
+    font-size: 25px;
+}
+
+.f, .h, .p{
+    width: 70%;
+    margin-left: auto;
+    display: flex;
+    justify-content: left;
+    color: #2A3863;
+    font-size: 20px;
+    font-family: Cuprum, Arial;
+}
+
+.f a, .h a {
+    margin-left: 20px;
+}
+
+.p a{
+    margin-left: 10px;
+}
+
+.divAcept{
+    display: block;
+    align-items: center;
+    justify-content: center;
+}
+
+.divAcept .question{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+}
+
+.divAcept .question a{
+    font-family: Cuprum, Arial;
+    font-size: 40px;
+    color: #2A3863;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.divAcept .buttonB{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40%;
+}
+
+.divAcept .buttonB button{
+    width: 30%;
+    height: 35%;
+    border-color: #F58500;
+    background-color: #2A3863;
+    border-radius: 10px;
+}
+
+.divAcept .buttonB a{
+    font-family: Cuprum, Arial;
+    font-size: 25px;
+    color: white;
+    text-decoration: none;
+}

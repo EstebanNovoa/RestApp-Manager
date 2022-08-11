@@ -1,0 +1,121 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+.contenedorComida {
+    flex-wrap: wrap;
+    height: 65%;
+    width: 90%;
+    max-width: 90%;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    display: flex;
+    border: solid 1px ;
+}
+
+.imagenYContador {
+    flex-wrap: wrap;
+    width: 25%;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.divBotones{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.imagenComida{
+    width: 80%;
+    height: 110px;
+    margin-top: 15px;
+    border-radius: 10px;
+}
+
+.divPrecio{
+    width: 25%;
+}
+
+.textoDescripcion {
+    width: 50%;
+}
+
+.cantidadComida{
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    border-radius: 5px;
+    border: solid 2px #2A3863;
+}
+
+.cantidadComida p{
+    font-family: Cuprum, Arial;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.textoDescripcion{
+    justify-content: flex-start;
+    text-align: justify;
+    margin-top: 10px;
+}
+
+.textoDescripcion a{
+    font-family: Cuprum, Arial;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.textoDescripcion p{
+    margin-top: 20px;
+    font-family: Cuprum, Arial;
+    font-size: 20px;
+}
+
+.divPrecio {
+    margin-top: 10px;
+    align-items: center;
+}
+
+.divPrecio .buttonDiv{
+    display: flex;
+    justify-content: center;
+}
+
+.divPrecio a{
+    font-family: Cuprum, Arial;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.divPrecio p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    font-family: Cuprum, Arial;
+    font-size: 40px;
+}
+
+.divPrecio button{
+    width: 50%;
+    height: 20%;
+    background-color: #2A3863;
+    border-radius: 10px;
+    border-color: red;
+}
+
+.divPrecio button a{
+    font-size: 25px;
+    color: white;
+    font-weight: lighter;
+}

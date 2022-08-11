@@ -1,0 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    font-size: 18;
+    background-color: #2A3863;
+}
+
+.App {
+    text-align: center;
+  }
+  

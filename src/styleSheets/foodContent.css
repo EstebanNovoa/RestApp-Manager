@@ -1,0 +1,102 @@
+.foodContent{
+    width: inherit;
+    height: inherit;
+    background-color: white;
+}
+
+.items {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    width: 90%;
+    max-height: 18%;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom: solid 2px #F58500;
+}
+
+.textSearch { 
+    color: #2A3863;
+    font-family: Cuprum, 'Gill Sans';
+    font-size: 40px;
+    font-weight: bold;
+    bottom: 10px;
+}
+
+.searchDiv{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 50%;
+    border-radius: 10px;
+    border: solid 2px #2A3863;
+}
+
+.inputText {
+    height: 25px;
+    width: 90%;
+    background-color: white;
+    border-color: transparent;
+    border-radius: 10px;
+    mask-border: none;
+}
+
+.searchIcon{
+    width: 25px;
+    height: 25px;
+}
+
+.filter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+    width: 20%;
+    border-radius: 10px;
+    border: solid 2px #2A3863;
+    background-color: white;
+    left: 70px;
+}
+
+.filterText{
+    width: 70%;
+    color: #2A3863;
+    font-family: Cuprum, 'Gill Sans';
+    font-size: 20px;
+    left: 10px;
+    bottom: 2px;
+}
+
+.filterIcon{
+    width: 20px;
+    height: 20px;
+}
+
+.container{
+    width: 90%;
+    height: 73%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    margin-top: 20px;
+    border-top: solid 1px black;
+    border-left: solid 1px black;
+    border-right: solid 1px black;
+    border-bottom: solid 1px black;
+    box-shadow: 0px 3px 13px 1px rgb(0 0 0 / 50%);
+    overflow-y: scroll;
+}
+
+.foodContent .container::-webkit-scrollbar {
+    width: 20px;
+    border-radius: 10px;
+    padding-left: -10px;
+}
+
+.foodContent .container::-webkit-scrollbar-thumb{
+    background-color: #2A3863;
+    border-radius: 10px;
+}
+

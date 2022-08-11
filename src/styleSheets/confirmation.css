@@ -1,0 +1,97 @@
+.divConfirm{
+    width: inherit;
+    height: inherit;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.divList{
+    width: 90%;
+    height: 73%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    margin-top: 20px;
+    border-top: solid 1px black;
+    border-left: solid 1px black;
+    border-right: solid 1px black;
+    border-bottom: solid 1px black;
+    box-shadow: 0px 3px 13px 1px rgb(0 0 0 / 50%);
+    overflow-y: scroll;
+}
+
+.divConfirm .divList{
+    width: 65%;
+    height: 73%;
+    margin-left: 5%;
+
+    border-radius: 10px;
+    margin-top: 20px;
+    border-top: solid 1px black;
+    border-left: solid 1px black;
+    border-right: solid 1px black;
+    border-bottom: solid 1px black;
+    box-shadow: 0px 3px 13px 1px rgb(0 0 0 / 50%);
+    overflow-y: scroll;
+}
+
+.divConfirm .divList::-webkit-scrollbar {
+    width: 20px;
+    border-radius: 10px;
+    padding-left: -10px;
+}
+
+.divConfirm .divList::-webkit-scrollbar-thumb{
+    background-color: #2A3863;
+    border-radius: 10px;
+}
+
+.divConfirm .items{
+    margin-top: -10px;
+}
+
+.divConfirm .items a{
+    position: relative;
+    top: 6px;
+}
+
+.divConfirm .totalDiv{
+    position: relative;
+    width: 20%;
+    height: 73%;
+    left: -5%;
+    background-color: white;
+    border-radius: 10px;
+    border: solid 1px #2A3863;
+    margin-top: 20px;
+}
+
+.total, .value, .button{
+    width: 100%;
+    height: calc(100% / 3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.totalDiv a{
+    font-family: Cuprum, Arial;
+    font-size: 40px;
+    color: #2A3863;
+    text-decoration: none;
+}
+
+.totalDiv button{
+    height: 40%;
+    width: 70%;
+    border-radius: 10px;
+    background-color: #2A3863;
+    border-color: #F58500;
+}
+
+.totalDiv button a{
+    font-size: 20px;
+    color: white;
+}
