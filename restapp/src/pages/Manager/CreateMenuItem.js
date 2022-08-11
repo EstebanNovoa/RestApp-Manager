@@ -36,7 +36,8 @@ function onClickAddProduct(){
             type:categoryList.options[categoryList.selectedIndex].text,
             price:document.getElementById('inpPriceItem').value,
     };
-     fetch(' https://restapp-restaurant-manager.herokuapp.com//api/admin/products/add', {
+    console.log(data)
+     fetch('https://restapp-restaurant-manager.herokuapp.com//api/admin/products/add', {
      method: 'POST', // or 'PUT'
      body: JSON.stringify(data), // data can be `string` or {object}!
      headers:{
@@ -45,7 +46,9 @@ function onClickAddProduct(){
      }).then(res => res.json())
      .catch(error => alert("No pudimos registrar tu ítem"))
     .then(response => alert('Ítem registrado!'));
+    
  }
 
+ 
 
-// http://localhost:8080/api/admin/products/add
+

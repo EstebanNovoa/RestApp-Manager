@@ -13,6 +13,8 @@ import { CreateItemMenu } from './pages/Manager/CreateMenuItem';
 import { DeleteItemMenu } from './pages/Manager/DeleteMenuItem';
 import { Orders } from './pages/Manager/Orders';
 import { OrderDetails } from './pages/Manager/OrderDetails';
+import { OrdersWorker } from './pages/Worker/OrdersWorker';
+import { OrderDetailsWorker } from './pages/Worker/OrderDetailsWorker';
 
 
 export default function App() {
@@ -37,9 +39,14 @@ export default function App() {
               <Route path='createMenuItem' element={<CreateItemMenu></CreateItemMenu>}></Route>
               <Route path='deleteMenuItem/:id' element={<DeleteItemMenu></DeleteItemMenu>}></Route>
               <Route path='orders' element={<Orders></Orders>}></Route>
-              <Route path='orders/:id' element={<OrderDetails></OrderDetails>}></Route>{/*CORREGIR*/}
+              <Route path='orders/:id' element={<OrderDetails></OrderDetails>}></Route>
           </Route>
           <Route path="client" ></Route>
+          <Route path="worker" >
+            <Route path='orders' element={<OrdersWorker></OrdersWorker>}></Route>
+            <Route path='orders/:id' element={<OrderDetailsWorker></OrderDetailsWorker>}></Route>
+          </Route>
+          
 
       </Routes>
   </Router>

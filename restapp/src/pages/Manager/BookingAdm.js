@@ -1,4 +1,4 @@
-import React, { useEffect, useState }, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ReactElement } from "react";
 import { FrameInfo } from "../../Components/Common/FramesInfo.js";
 import { Header } from "../../Components/Common/Header.js";
@@ -9,16 +9,16 @@ import { Booking } from "../../models/Booking";
 
 export function BookingAdm(){
     let filterOptions = ["Hoy","Mañana","Pasado mañana"]
-    // let children = [
-    //     new Booking("Reservacion 1","11/04/22","11am",12),
-    //     new Booking("Reservacion 2","11/04/22","11am",12),
-    //     new Booking("Reservacion 3","11/04/22","11am",12),
-    //     new Booking("Reservacion 4","11/04/22","11am",12),
-    //     new Booking("Reservacion 5","11/04/22","11am",12),
-    //     new Booking("Reservacion 6","11/04/22","11am",12),
-    //     new Booking("Reservacion 7","11/04/22","11am",12),
-    //     new Booking("Reservacion 8","11/04/22","11am",12),
-    // ]
+     let children = [
+         new Booking("Reservacion 1","11/04/22","11am",12),
+         new Booking("Reservacion 2","11/04/22","11am",12),
+         new Booking("Reservacion 3","11/04/22","11am",12),
+         new Booking("Reservacion 4","11/04/22","11am",12),
+         new Booking("Reservacion 5","11/04/22","11am",12),
+         new Booking("Reservacion 6","11/04/22","11am",12),
+         new Booking("Reservacion 7","11/04/22","11am",12),
+         new Booking("Reservacion 8","11/04/22","11am",12),
+     ]
     const[loading,setLoading] = useState(true);
     const[bookings,setBookings] = useState([]);
     useEffect(() => {

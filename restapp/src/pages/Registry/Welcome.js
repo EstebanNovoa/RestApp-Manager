@@ -12,7 +12,7 @@ export function Welcome() {
         <SigninMessage></SigninMessage>
       </div>
       <div className="text-center w-1/2 float-left"><ButtonW text="Iniciar Sesión" className="mt-10" id="btnLogIn" link="" event={onClickLogIn} ></ButtonW></div>
-      <div className=" w-1/3 float-right"><ButtonW text="Crear Cuenta" className="mt-10 text-center" id="btnCreateAccount" link="/signin" event={onClickLogIn}></ButtonW></div>
+      <div className=" w-1/3 float-right"><ButtonW text="Crear Cuenta" className="mt-10 text-center" id="btnCreateAccount" link="../signin" event={onClickLogIn}></ButtonW></div>
     </div>
   );
 }
@@ -22,6 +22,5 @@ export function Welcome() {
 export function onClickLogIn(){
   let emailInput = document.getElementById('emailLogIn').value;
   let passwordInput = document.getElementById('passwordLogIn').value;
-  
 }
 
